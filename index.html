@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 
-  <title>EatDisWatchDat</title>
+   
+  <title>EatDisWatchDat Logo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -16,8 +16,8 @@
 </head>
 
 <body>
-<!--nav bar crap-->
 
+<!--nav bar crap-->
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -28,183 +28,33 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">EatDis-WatchDat</a>
+      <a class="navbar-brand" href="#">Eat Dis Watch Dat logo will go here</a>
+      <img src="assets/images/settings.png" alt="" id="settings-button" href="">
     </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+  </div>
 </nav>
-
-<!--end navbar crap-->
- 
-       
+<!--end nav bar crap-->      
 
  <div class="content">
-    <div class="allCharacters">
-      <h3 class="center">Space for Other Stuff</h3>
-
-      <div class="pickCharacter center">
-        <div class="character center">
-         
-          <img class="char" src="assets/images/    .jpg" alt="image here">
-          
-        </div>
-        <div class="character center">
-          
-          <img class="char" src="assets/images/     .jpg" alt="image here">
-          
-        </div>
-      
-      </div>
- 
-      
-    </div>
- 
+    
     <div class="battleArea center">
 
-        <div class="movieArea">
-            <h4>Watch Dat</h4>
-          <div class="YourChar">
-          </div>
-        </div>
-
-        <div class="dinnerArea">
-        <h4>Eat Dis</h4>
-        <div class="Dinner">
-        </div>
-    </div>
-      
-
     </div>
 
-    
-  </div>
+    <div class="summary">
+
+    <h4>App --- summary -------------- stuff ------------- goes ----------------- here -------------------</h4>
+
+    </div>
   
-<div class="row form">
-    <form onsubmit="return false">
-<div class="col s6">
-    
-    <input class ="inputbox" type="number" id="zipCode" placeholder="Zip">
-    <input class ="inputbox" type="text" id="city" placeholder="City">
-    <input class ="inputbox" type="text" id="state" placeholder="State">
 </div>
 
-<div class="col s6">
-         
-            <select id="searchCriteria">
-              <option>Rating</option>
-              <option>Budget</option>
-    
-            </select>
-        
-            <select id="searchOrder">
-                 <option>High</option>
-                 <option>Low</option>
-           </select>
+  <div class="loginButtons">
+                  <img src="assets/images/facebookbutton.png" href="#" alt="" id="facebook-button">
 
-             <div class="headerbutton">
-      <!-- Submit Button ID: submit -->
-      <button class="red lighten-3 btn" type="submit" id="submit"> <i class="material-icons"></i> Go </button>
-    </form>
+                  <img src="assets/images/googlebutton.png" href="#"  alt="" id="google-button">
+
   </div>
-  </div>
-</div>
-
-<!-- Logout Class: form-signin -->
-  <div class="form-signin">
-  </div>
-
-<div class="container">
-<!-- Restaurant Output -->
-<a name="restaurantOutputDiv"></a> 
-  <div class="outputDiv">
-    
-<!-- restaurantOutput id:restaurantOutput -->
-<!-- Where to put the results from the query -->
-    <div class="restaurantOutput" id="restaurantOutput">
-    </div>
-</div>
-
-
- <!--Movie Output !-->
-<a name="movieOutputDiv"></a> 
- <div class="outputDiv"> 
-  <div class="row movieDiv">
-    <div class="phases col s6">
-    
-      <div class="phase1">
-      
-        <div class="movieNames" id="movieContainer">
-       
-            <div class="div-movielist"></div>
-        </div>
-      </div>
-
-      <h5 class="movieIntro">Choose Showtime</h5>
-      <div class="phase2">
-       <!-- ID:showtimeContainer -->
-         <div id="showtimeContainer"></div>
-        <!-- ID:selectionContainer -->
-         <div id="selectionContainer"></div>
-         
-         <div id="mapdiv"></div>
-      </div>
-     </div>
-
-     <div class="moviepicture col s6">
-          <img class="movieImg" id="movieImage">
-            <div class="movieRated" id="movieRating"> </div>
-      </div>
-    </div>   
-  </div>
-</div>
-
-<!-- Side scroll -->
-<div class="fixed-action-btn" style="bottom: 45px; right: 100px;">
-    
-    <ul>
-       <li><a class="btn-floating teal lighten-2" href="#restaurantOutputDiv"><i class="material-icons">Like</i></a></li>
-       <li><a class="btn-floating teal lighten-2" href="#movieOutputDiv"><i class="material-icons">Don't Like</i></a></li>
-       <li><a class="btn-floating teal lighten-2 modal-trigger" href="#modal1"><i class="material-icons">Add Review</i></a></li>
-    </ul>
- </div>
 
 </body>
 
