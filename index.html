@@ -21,16 +21,23 @@
     <!--end nav bar-->
 
     <div class="content">
-      <div class="battleArea center img-responsive text-center">
+      <div class="battleArea img-responsive text-center">
         <h1>How about Dinner and a Movie?</h1>
-        <form role="form" method="get" action="">
-          <div class="form-group col-md-6">
+        <form role="form" method="get" action="choices.html">
+         
+          <div class="form-group col-sm-2 text-center">
             <input class="form-control" id="name-input" type="text" pattern="\d*" placeholder="Enter Your Zip Code" required>
-          </div><br>
-          <button class="btn btn-lg btn-primary" id="btnGoZipCode" type="submit">Find Dinner and a Movie</button>
+            <button class="btn btn-lg btn-primary" id="btnGoZipCode" type="submit">Find Dinner and a Movie</button>
+          </div>
+          
+          <br>
+          
         </form>
       </div>
     </div>
+
+    
+      <h2>Want to have more control over searches?</h2>
     <!--modal-->
     <div id="myModal" class="modal fade" role="dialog" style="display: none;">
       <div class="modal-dialog modal-lg">
@@ -42,12 +49,6 @@
               <div class="col-lg-4 col-md-4 col-sm-12 text-center">
               
               </div>
-              <div class="col-lg-8 col-md-8 col-sm-12 text-center">
-                <h3>Restaurant 1</h3>
-                <p>
-                  Lorem ipsum dolor sit amet
-                </p>
-              </div>
             </div>
           </div>
           
@@ -57,7 +58,6 @@
     <!--end modal-->
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 </body>
