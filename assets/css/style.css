@@ -84,6 +84,11 @@ body {
 }
 
 
+.row {
+	color: white;
+}
+
+
 /* screen responsiveness*/
 @media screen and (max-width: 882px){
 	.battleArea {
