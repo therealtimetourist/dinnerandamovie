@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Back End Test Page</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script type="text/javascript" src="../assets/javascript/jquery-3.2.1.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <script src="assets/javascript/moment.js"></script>
+    <link rel="stylesheet" href="../assets/css/back-end-style.css">
+    <script src="assets/javascript/back_end_code.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Back End Test Page</h1>
+        <p>...</p>
+        <p><a href='signin.html' class="btn btn-primary btn-lg" href="#" role="button">Log in</a></p>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default panel-transparent">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-user" aria-hidden="true"></i> User Info</h3>
+                        </div>
+                        <div class="panel-body" id="currentUserInfoPanel">
+                            <div class="media">
+                                <img class="d-flex mr-3" src="..." alt="Generic placeholder image"
+                                     id="currentUserImage">
+                                <div class="media-body">
+                                    <h5 class="mt-0" id="currentUserName">Media heading</h5>
+                                    <span id="currentUserInfo">User Info</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-default panel-transparent">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i> User Manager</h3>
+                    <span id="cmdBtn">
+                    <button type="button" class="btn btn-success btn-xs"
+                            id="btnAddUser" data-toggle="modal" data-target="#addUserModal">
+                    <i class="fa fa-user-plus" aria-hidden="true"></i> Add User</button>
+                </span>
+                </div>
+                <div class="panel-body" id="users">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Flags</th>
+                                <th>Active</th>
+                                <th>User Name</th>
+                                <th>User Email</th>
+                                <th>Role</th>
+                                <th>Last Login</th>
+                                <th>Create Date</th>
+                            </tr>
+                            </thead>
+                            <tbody id="userTable">
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div id="addUserModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><i class="fa fa-user" aria-hidden="true"></i> Add/Edit User</h4>
+            </div>
+            <div class="modal-body">
+                <form id="newUserForm" action="">
+                    <div class="form-group">
+                        <label for="userDisplayName">Full Name:</label>
+                        <input type="text" id="userDisplayName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email:</label>
+                        <input type="email" id="userEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userRole">User Role:</label>
+                        <select class="form-control" id="userRole">
+                            <option>Reporter</option>
+                            <option>User</option>
+                            <option>Admin</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-success" id="btnModAddUser">Add User</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+
+<script type="text/javascript">
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBby0z2SGf1_1jTbXXDrcT4LWz6JcVGJYw",
+        authDomain: "dinnerandamovie-87b5e.firebaseapp.com",
+        databaseURL: "https://dinnerandamovie-87b5e.firebaseio.com",
+        projectId: "dinnerandamovie-87b5e",
+        storageBucket: "dinnerandamovie-87b5e.appspot.com",
+        messagingSenderId: "275851238648"
+    };
+
+    firebase.initializeApp(config);
+
+    initApp = function () {
+
+        // Initialize Firebase
+
+        //firebase.initializeApp(config);
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in.
+                $('#sign-in-status').text('');
+                console.log('Signing in a user ' + moment(Date.now()).calendar());
+                var displayName = user.displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var uid = user.uid;
+                var phoneNumber = user.phoneNumber;
+                var providerData = user.providerData;
+
+
+                user.getToken().then(function (accessToken) {
+                    console.log('Function get token');
+
+
+                    sessionStorage.setItem('displayName', displayName)
+
+                    sessionStorage.setItem('email', email);
+                    sessionStorage.setItem('emailVerified', emailVerified);
+                    sessionStorage.setItem('photoURL', photoURL);
+                    sessionStorage.setItem('uid', uid);
+                    sessionStorage.setItem('phoneNumber', phoneNumber);
+                    sessionStorage.setItem('providerData', providerData);
+
+                    var userProfileKey = "";
+                    firebase.database().ref().child('users').orderByChild('userEmail').equalTo(email).on("value", function (snapshot) {
+                        console.log('This is the snapshot key...' + snapshot.val());
+                        snapshot.forEach(function (childSnapshot) {
+                            var childKey = childSnapshot.key;
+                            var childData = childSnapshot.val();
+                            console.log('This is the data key...' + childKey);
+                            console.log('This is the user role ...' + childData.userRole);
+                            sessionStorage.setItem('userRole', childData.userRole);
+                            sessionStorage.setItem('entryDate', childData.entryDate);
+                            sessionStorage.setItem('lastChangeDate', childData.lastChangeDate);
+                            sessionStorage.setItem('lastModifiedBy', childData.lastModifiedBy);
+                            userProfileKey = childKey;
+
+                        });
+                    });
+
+                    var userUpdate = {
+                        userDisplayName: displayName,
+                        userEmail: email,
+                        userRole: sessionStorage.getItem('userRole'),
+                        userActive: true,
+                        entryDate: sessionStorage.getItem('entryDate'),
+                        lastChangeDate: sessionStorage.getItem('lastChangeDate'),
+                        lastLoginDate: Date.now(),
+                        lastModifiedBy: sessionStorage.getItem('lastModifiedBy')
+                    };
+
+                    //Write the current login back to the database
+                    //updateUser(userProfileKey, userUpdate);
+
+                    //Go back to the data base and get the user role based on the logged in user.
+                    $('#currentUserImage').attr('src', photoURL);
+                    $('#currentUserImage').attr('width', '48px');
+                    $('#currentUserName').text(displayName);
+                    $('#currentUserInfo').text(email);
+
+                    $(".panel").show();
+
+
+                });
+            } else {
+                // User is signed out.
+                $('#sign-in-status').text('You are currently signed out');
+                //$('.panel').hide();
+            }
+        }, function (error) {
+            console.log(error);
+        });
+    };
+
+    window.addEventListener('load', function () {
+        initApp()
+
+        $("#btnModAddUser").click(function () {
+
+            console.log("---------Add User button clicked");
+            var fullName = $("#userDisplayName").val().trim();
+            var email = $("#userEmail").val().trim();
+            var role = $("#userRole option:selected").text();
+
+            addNewUser(fullName, email, role);
+        });
+    });
+
+
+    function addNewUser(fullName, email, role) {
+        console.log("---------Add User function");
+        //Prepare the user object
+        var newUser = {
+            userDisplayName: fullName,
+            userEmail: email,
+            userRole: role,
+            userActive: true,
+            entryDate: Date.now(),
+            lastChangeDate: Date.now(),
+            lastModifiedBy: sessionStorage.getItem('email')
+        };
+
+        //Get a unique key
+        //Get a key for a new Post.
+        var newUserID = firebase.database().ref().child("users").push().key;
+
+        //Add the user
+        firebase.database().ref("users/" + newUserID).set(newUser);
+
+    }
+</script>
+</body>
+</html>
