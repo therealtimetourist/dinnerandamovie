@@ -1,0 +1,277 @@
+
+
+/*Custom Classes*/
+
+.mainHeader {
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: slategray;
+}
+
+.mainArea {
+    height: 800px;
+}
+
+.footer {
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 50px;
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+.bottomPadding {
+    padding-bottom: 60px;
+}
+
+.theWord {
+    text-align: center;
+    font-size: x-large;
+    color: black;
+    letter-spacing: 15px;
+}
+
+.perfLabel {
+    font-weight: bold;
+    clear: both;
+    height: 30px;
+    width: 200px;
+    background-color: papayawhip;
+    border-color: slategray;
+    border-width: 1px;
+    border-style: solid;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+/*Element Classes*/
+
+button {
+    padding: 5px;
+    margin: 5px;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background-image: url("../images/elastoplast.png");
+
+}
+
+div.sideBarHeader {
+    font-size: large;
+    border-bottom: 2px solid slategray;
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+div.sideBar {
+    color: #777777;
+    text-align: center;
+}
+
+th {
+    font-weight: bold;
+}
+
+/*ID Classes*/
+
+#contactLink {
+    height: 60px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#logo {
+    max-height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#hangManState {
+    max-height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Extending bootstrap classes*/
+
+.panel-title, .panel-footer {
+    font-size: larger;
+    font-weight: bold;
+    font-family: Arial;
+
+}
+
+.answer {
+    background: rgba(159, 203, 242 .65);
+    color: floralwhite;
+    margin-left: 20px;
+    margin-bottom: 5px;
+    height: 35px;
+    padding-bottom: 5px;
+    border-radius: 9px;
+
+}
+
+.rightAnswer {
+    border-style: solid;
+    border-width: 5px;
+    border-color: greenyellow;
+}
+
+.wrongAnswer {
+    border-style: solid;
+    border-width: 5px;
+    border-color: red;
+}
+
+.answer:hover {
+    background: rgba(244, 158, 66, .5);
+    font-weight: bold;
+
+}
+
+.answerText {
+    margin-left: 10px;
+    position: relative;
+    top: 4px;
+    font-family: Arial;
+}
+
+.answerIcon {
+    margin-left: 10px;
+    position: relative;
+
+    top: 7px;
+}
+
+.buttonBar {
+    margin-top: 20px;
+}
+
+#display {
+
+}
+
+#progressHeader {
+    margin-bottom: 5px;
+}
+
+.panel-transparent {
+    background: rgba(249, 244, 239, .85);
+    position: relative;
+    border-width: 1px;
+    border-color: #4d4d4c;
+    border-radius: 4px;
+}
+
+#adminMenu, #userMenu {
+    width: 100%;
+}
+
+.well-transparent {
+    background: rgba(136, 136, 136, .5);
+    color: floralwhite;
+    margin-top: 20px;
+}
+
+button.btn.btn-primary {
+    margin-left: 0px;
+}
+
+#cmdBtn{
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+.menuTitle {
+    font-weight: bold;
+    font-size: larger;
+
+}
+
+.progress {
+    margin-top: 10px;
+}
+
+#startBtn, #resetBtn {
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+.info {
+    padding: 10px;
+    background: rgba(136, 136, 136, .75);
+    color: floralwhite;
+    margin-top: 20px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #269abc;
+
+}
+
+.media-image {
+    width: 125px;
+}
+
+.player:hover {
+    border: 1px solid orange;
+}
+
+.container {
+    width: 100%;
+
+}
+
+#next, #prev {
+    margin: 20px;
+}
+
+.media p {
+    color: darkslategray;
+}
+
+.media-heading {
+    font-weight: bold;
+}
+
+.healthPoints {
+    margin-left: 20px;
+}
+
+.badge-warning {
+    background-color: #d58512;
+}
+
+.badge-success {
+    background-color: #398439;
+}
+
+.badge-info {
+    background-color: #269abc;
+}
+
+.badge-inverse {
+    background-color: #333333;
+}
+
+.badge-danger {
+    background-color: #d43f3a;
+}
+
+.panelBorder {
+    border: 1px solid whitesmoke;
+}
+
+#fightSection {
+    color: greenyellow;
+    font-weight: bold;
+}
+

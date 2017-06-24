@@ -3,19 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <title>Back End Test Page</title>
-    <link rel="stylesheet" href="https://maxcdnstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <script type="text/javascript" src="assets/javascript/jquery-3.2.1.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
     <script src="assets/javascript/moment.js"></script>
+    <link rel="stylesheet" href="assets/css/back-end-style.css">
+    <script src="assets/javascript/back_end_code.js"></script>
 
 </head>
 <body>
 <div class="container">
+    <div class="jumbotron">
+        <h1>Back End Test Page</h1>
+        <p>...</p>
+        <p><a href='signin.html' class="btn btn-primary btn-lg" href="#" role="button">Log in</a></p>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default panel-transparent">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-user" aria-hidden="true"></i> User Info</h3>
+                        </div>
+                        <div class="panel-body" id="currentUserInfoPanel">
+                            <div class="media">
+                                <img class="d-flex mr-3" src="..." alt="Generic placeholder image"
+                                     id="currentUserImage">
+                                <div class="media-body">
+                                    <h5 class="mt-0" id="currentUserName">Media heading</h5>
+                                    <span id="currentUserInfo">User Info</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-default panel-transparent">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i> User Manager</h3>
+                    <span id="cmdBtn">
+                    <button type="button" class="btn btn-success btn-xs"
+                            id="btnAddUser" data-toggle="modal" data-target="#addUserModal">
+                    <i class="fa fa-user-plus" aria-hidden="true"></i> Add User</button>
+                </span>
+                </div>
+                <div class="panel-body" id="users">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Flags</th>
+                                <th>Active</th>
+                                <th>User Name</th>
+                                <th>User Email</th>
+                                <th>Role</th>
+                                <th>Last Login</th>
+                                <th>Create Date</th>
+                            </tr>
+                            </thead>
+                            <tbody id="userTable">
 
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
 </div>
+<!-- Modal -->
+<div id="addUserModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><i class="fa fa-user" aria-hidden="true"></i> Add/Edit User</h4>
+            </div>
+            <div class="modal-body">
+                <form id="newUserForm" action="">
+                    <div class="form-group">
+                        <label for="userDisplayName">Full Name:</label>
+                        <input type="text" id="userDisplayName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email:</label>
+                        <input type="email" id="userEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userRole">User Role:</label>
+                        <select class="form-control" id="userRole">
+                            <option>Reporter</option>
+                            <option>User</option>
+                            <option>Admin</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-success" id="btnModAddUser">Add User</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+
 <script type="text/javascript">
     // Initialize Firebase
     var config = {
@@ -26,13 +139,14 @@
         storageBucket: "dinnerandamovie-87b5e.appspot.com",
         messagingSenderId: "275851238648"
     };
+
     firebase.initializeApp(config);
 
     initApp = function () {
 
         // Initialize Firebase
 
-        firebase.initializeApp(config);
+        //firebase.initializeApp(config);
 
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
@@ -105,7 +219,7 @@
             } else {
                 // User is signed out.
                 $('#sign-in-status').text('You are currently signed out');
-                $('.panel').hide();
+                //$('.panel').hide();
             }
         }, function (error) {
             console.log(error);

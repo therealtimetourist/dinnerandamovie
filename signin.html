@@ -29,7 +29,7 @@
 
     // FirebaseUI config.
     var uiConfig = {
-        signInSuccessUrl: 'index.html',
+        signInSuccessUrl: 'backend_index.html',
         signInOptions: [
             // Leave the lines as is for the providers you want to offer your users.
             firebase.auth.GoogleAuthProvider.PROVIDER_ID
@@ -44,7 +44,8 @@
     // The start method will wait until the DOM is loaded.
     ui.start('#firebaseui-auth-container', uiConfig);
 </script>
-
+<h4>Please sign in to access this app....</h4>
+<div id="firebaseui-auth-container"></div>
 
 </body>
 </html>
