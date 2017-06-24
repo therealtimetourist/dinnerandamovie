@@ -1,104 +1,79 @@
 html {
 	
 }
-/*create background image*/ 
+
 body {
 	background: black;
 	
 }
 
-
-.Dinner div, img {
-	height: 200px;
-	width: 155px;
-}
-
-
-.center {
-	margin-left: 50px;
-	text-align: center;
-}
-
-
-
 .battleArea {
+	background: url(../images/couplemovie.jpg) no-repeat center;
 	margin: auto;
 	color: white;
-	background: blue;
-	border: 2px solid maroon;
-	width: 850px;
-}
-
-
-
-.allCharacters {
-	
-	float: right;
-	width: 480px;
-	height: 360px;
-	padding-top: 5px;
-	padding-right: 10px;
-	padding-left: 45px;
-	padding-bottom: 10px;
-}
-
-.allCharacters h3 {
-	color: white;
-	padding-top: 15px;
-	text-align: left;
-}
-
-.battleArea {
-	width: 65%;
-	float: left;
-	padding: 20px;
-
-	height: 440px;
+	width: 100%;
+	padding: 260px 20px 20px 20px;
+	height: 500px;
 	margin-bottom: 20px;
 }
 
-.textArea {
-	margin: auto;
-	border: 1px solid black;
-	display: none;
-	border: none;
+.goArea {
+	margin-top: 0px;
 	text-align: center;
-	padding: 10px;
-}
-
-.character {
-	width: 150px;
-}
-
-.character img {
-	margin-top: 25px;
+	width: 100%;
+	height: 550px;
+	color: white;
+	margin-bottom: 0px;
 	
-	height: 100px;
-	width: 100px;
 }
 
+	#movieChosen {
+		
+		margin: 20px;	
+		height: 450px;
+		width: 350px;
+		border: 2px solid purple;
+	}
 
-.movieArea {
-	float: left;
-	margin-left: 25%;
-	width: 180px;
+	#dinnerChosen {
+		
+		margin: 20px;
+		height: 450px;
+		width: 350px;
+		border: 2px solid purple;
+	}
+
+
+.summary {
+	text-align: center;
+	color: white;
 }
 
-.dinnerArea {
-	float: right;
-	margin-right: 25%;
-	width: 180px;
+.loginButtons {
+	text-align: center;
 }
 
+	#facebook-button {
+	
+		height: 50px;
+		width: 200px;
+	}
 
-.char {
-	width: 100px;
-	border: 3px solid blue;
+	#google-button {
+	
+	height: 50px;
+	width: 200px;
+	}
+
+#settings-button {
+	height: 35px;
+	width: 35px;
+	background: black;
 }
+
 
 /*style nav brand color and font*/
 .navbar-brand {
-	
 	
 	font-family: georgia;
 	font-size: 32px;
@@ -108,41 +83,22 @@ body {
     background: black;
 }
 
-.movieIntro {
-	color: white;
-}
-
 
 /* screen responsiveness*/
 @media screen and (max-width: 882px){
-	.allCharacters, .battleArea {
+	.battleArea {
 		width: 500px;
 	}
 
-	.YourChar div, img {
-		height: 80px;
-		width: 60px;
+	#movieChosen {
+		width: 300px;
+		height: 400px;
 	}
 
-	.Dinner div, img {
-		height: 100px;
-		width: 100px;
-	}
+	#dinnerChosen {
+		width: 300px;
+		height: 400px;
 
-
-	.movieArea {
-		margin-left: 10%;
-		width: 180px
-	}
-
-	.dinnerArea {
-		margin-right: 10%;
-		width: 180px;
-	}
-
-	.navbar-header {
-		
-		
 	}
 
 	.navbar-toggle {
@@ -179,7 +135,6 @@ body {
 		margin: 15px 0;
 	}
 
-
 	.navbar-collapse.collapse.in { 
 		display: block!important;
 	}
@@ -191,51 +146,23 @@ body {
 }
 
 @media screen and (max-width: 640px){
-	.allCharacters, .battleArea {
+	.battleArea {
 		width: 100%;
-	}
-
-	
-	.movieArea {
-		margin-right: 10%;
-		width: 140px;
-	}
-
-	.dinnerArea {
-		margin-left: 10%;
-		width: 140px;
 	}
 
 	.navbar-brand {
 		font-size: 15px;
 	}
 
-
-	.Dinner > div {
-		width: 140px;
+	#movieChosen {
+		width: 170px;
+		height: 240px;
 	}
 
-	h2 {
-	font-size: 25px;
-	position: absolute;
-	left: 10px;
-	bottom: auto;
+	#dinnerChosen {
+		width: 170px;
+		height: 240px;
+
 	}
 }
 
-@media screen and (max-width: 640px){
-	.movieArea {
-		margin-left: 1%;
-		width: 130px;
-	}
-
-	.dinnerArea {
-		margin-right: 1%;
-		width: 130px;
-	}
-	
-	p {
-		font-size: 15px;
-	}
-
-}
