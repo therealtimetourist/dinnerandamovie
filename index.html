@@ -1,61 +1,59 @@
 <!DOCTYPE html>
 <html>
-<head>
-   
-  <title>EatDisWatchDat Logo</title>
+  <head>
+    <title>EatDisWatchDat | Welcome</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  </head>
 
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css"> 
-  
-  <script type="text/javascript" src="assets/javascript/jquery-3.1.0.min.js"></script>
-  <script type="text/javascript" src="assets/javascript/app.js"></script>
-  
-</head>
+  <body>
+    <!--nav bar-->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Eat Dis Watch Dat logo will go here</a>
+        <a href="prefs.html"><img class="navbar-right" src="assets/images/settings.png" alt="preferences" id="settings-button"></a>
+      </div>
+    </nav>
+    <!--end nav bar-->
 
-<body>
+    <div class="content">
+      <div class="battleArea center img-responsive text-center">
+        <h1>How about Dinner and a Movie?</h1>
+        <form role="form" method="get" action="choices.html">
+          <div class="form-group col-md-6">
+            <input class="form-control" id="name-input" type="text" pattern="\d*" placeholder="Enter Your Zip Code" required>
+          </div><br>
+          <button class="btn btn-lg btn-primary" id="btnGoZipCode" type="submit">Find Dinner and a Movie</button>
+        </form>
+      </div>
 
-<!--nav bar crap-->
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Eat Dis Watch Dat logo will go here</a>
-      <img src="assets/images/settings.png" alt="" id="settings-button" href="">
+      <div class="summary">
+        <h2>"Whadaya wanna do tonight?"</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porttitor fringilla efficitur. Vestibulum commodo mauris ut dolor imperdiet, eget suscipit ex placerat. Integer est massa, ullamcorper non leo tempus, pharetra fermentum justo. Cras id erat ante. Sed gravida sem vel nunc suscipit bibendum. Cras massa felis, interdum et bibendum at, rhoncus id felis.
+        </p>
+        <p>
+          Nulla ornare pulvinar neque, sed iaculis nunc venenatis quis. Maecenas quis lectus diam. Donec vitae sapien eu eros sodales facilisis. In semper elit sit amet lacus bibendum, vel blandit quam ultricies. Morbi sit amet mauris enim.
+        </p>
+      </div>
     </div>
-  </div>
-</nav>
-<!--end nav bar crap-->      
 
- <div class="content">
+    <div class="loginButtons">
+      <h2>Want to have more control over searches?</h2>
+      <img src="assets/images/facebookbutton.png" href="#" alt="login using Facebook" id="facebook-button">
+      <br>
+      <img src="assets/images/googlebutton.png" href="#"  alt="login using Google+" id="google-button">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     
-    <div class="battleArea">
-
-    </div>
-
-    <div class="summary">
-
-    <h4>App --- summary -------------- stuff ------------- goes ----------------- here -------------------</h4>
-
-    </div>
-  
-</div>
-
-  <div class="loginButtons">
-                  <img src="assets/images/facebookbutton.png" href="#" alt="" id="facebook-button">
-
-                  <img src="assets/images/googlebutton.png" href="#"  alt="" id="google-button">
-
-  </div>
+    <script type="text/javascript" src="assets/javascript/front_end_code.js"></script>
+    <script type="text/javascript" src="assets/javascript/back_end_code.js"></script>
 
 </body>
-
-</html>
