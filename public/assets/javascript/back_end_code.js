@@ -103,27 +103,11 @@ $(document).ready(function () {
 
     });
 
-    $("#btnUserMngr").click(function () {
-        console.log("Switching view to usermanager");
-        $("#tickTime").hide();
-        $("#qbProjects").hide();
-        $("#userManager").show();
+    $("#btnRefreshRestaurants").click(function () {
+//
 
     });
 
-    $("#btnRefreshTickData").click(function () {
-        console.log("Refreshing TickTime data ---- ");
-        queryTick("2017-05-01", "2017-05-31");
-
-    });
-
-    $("#btnTickTime, #btnQBData").click(function () {
-        console.log("Switching view to Mainiew");
-        $("#tickTime").show();
-        $("#qbProjects").show();
-        $("#userManager").hide();
-
-    });
 
     function deleteUser() {
         //Connect to the db
