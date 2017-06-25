@@ -23,7 +23,8 @@
 <body onload="">
 <div class="container">
     <div class="jumbotron">
-        <h2>Back End Test Page</h2>
+        <h1>Back End Test Page</h1>
+        <p>...</p>
         <p><a href='signin.html' class="btn btn-primary btn-lg" href="#" role="button">Log in</a></p>
 
     </div>
@@ -50,123 +51,42 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-default panel-transparent">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-cutlery" aria-hidden="true"></i> Venue Search</h3>
-                        </div>
-                        <div class="panel-body" id="restaurantSearch">
-                            <span id="restaurantMessage">Use the button below to refresh the theater and restaurant results</span>
-                            <p><a class="btn btn-success btn-md" href="#" role="button" id="btnRefreshRestaurants">Refresh</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="col-md-9">
-            <!-- User Manager Row -->
-            <div class="row">
-                <div class="panel panel-default panel-transparent">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i> User Manager</h3>
-                        <span id="cmdBtn">
+            <div class="panel panel-default panel-transparent">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i> User Manager</h3>
+                    <span id="cmdBtn">
                     <button type="button" class="btn btn-success btn-xs"
                             id="btnAddUser" data-toggle="modal" data-target="#addUserModal">
                     <i class="fa fa-user-plus" aria-hidden="true"></i> Add User</button>
                 </span>
-                    </div>
-                    <div class="panel-body" id="users">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Flags</th>
-                                    <th>Active</th>
-                                    <th>User Name</th>
-                                    <th>User Email</th>
-                                    <th>Role</th>
-                                    <th>Last Login</th>
-                                    <th>Create Date</th>
-                                </tr>
-                                </thead>
-                                <tbody id="userTable">
+                </div>
+                <div class="panel-body" id="users">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Flags</th>
+                                <th>Active</th>
+                                <th>User Name</th>
+                                <th>User Email</th>
+                                <th>Role</th>
+                                <th>Last Login</th>
+                                <th>Create Date</th>
+                            </tr>
+                            </thead>
+                            <tbody id="userTable">
 
-                                </tbody>
-                            </table>
-
-                        </div>
+                            </tbody>
+                        </table>
 
                     </div>
-
 
                 </div>
-            </div>
-            <!-- Movie Theater Search Results-->
-            <div class="row">
-                <div class="panel panel-default panel-transparent">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i> Movie Theater Search</h3>
-                    </div>
-                    <div class="panel-body" id="theaters">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Theater Name</th>
-                                    <th>Address</th>
-                                    <th>City</th>
-                                    <th>Zip</th>
-                                    <th>Distance</th>
-                                </tr>
-                                </thead>
-                                <tbody id="theaterTable">
-
-                                </tbody>
-                            </table>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <!-- Restaurant Search Results-->
-            <div class="row">
-                <div class="panel panel-default panel-transparent">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i> Local Restaurants</h3>
-
-                    </div>
-                    <div class="panel-body" id="users">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                <tr>
-
-                                    <th>Rest Name</th>
-                                    <th>Address</th>
-                                    <th>City</th>
-                                    <th>Category</th>
-                                    <th>Distance</th>
-                                    <th>Rating</th>
-                                    <th>Price</th>
-
-                                </tr>
-                                </thead>
-                                <tbody id="restaurantTable">
-
-                                </tbody>
-                            </table>
-
-                        </div>
-
-                    </div>
 
 
-                </div>
             </div>
         </div>
     </div>
@@ -326,10 +246,6 @@
     });
 
 
-    /**
-     * This functionality plugs a new user into the data base.
-     *
-     */
     function addNewUser(fullName, email, role, preferences) {
         console.log("---------Add User function");
         //Prepare the user object
