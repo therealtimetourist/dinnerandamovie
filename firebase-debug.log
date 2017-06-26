@@ -1,0 +1,36 @@
+[debug] [2017-06-26T01:37:55.248Z] ----------------------------------------------------------------------
+[debug] [2017-06-26T01:37:55.251Z] Command:      /usr/local/Cellar/node/7.8.0/bin/node /usr/local/bin/firebase serve
+[debug] [2017-06-26T01:37:55.251Z] CLI Version:  3.9.1
+[debug] [2017-06-26T01:37:55.252Z] Platform:     darwin
+[debug] [2017-06-26T01:37:55.252Z] Node Version: v7.8.0
+[debug] [2017-06-26T01:37:55.252Z] Time:         Sun Jun 25 2017 21:37:55 GMT-0400 (EDT)
+[debug] [2017-06-26T01:37:55.252Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-06-26T01:37:55.267Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-06-26T01:37:55.267Z] > authorizing via signed-in user
+[debug] [2017-06-26T01:37:55.270Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-06-26T01:37:55.270Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/WN981AgE1kLnAdkZn-8GSDdalF7S0xyPz4ocpA8UQlA',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sun Jun 25 2017 21:37:55 GMT-0400 (EDT)
+[debug] [2017-06-26T01:37:55.569Z] <<< HTTP RESPONSE 200
+[debug] [2017-06-26T01:37:55.648Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/dinnerandamovie-87b5e  
+ Sun Jun 25 2017 21:37:55 GMT-0400 (EDT)
+[debug] [2017-06-26T01:37:56.128Z] <<< HTTP RESPONSE 200
+[debug] [2017-06-26T01:37:56.129Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/dinnerandamovie-87b5e/tokens  
+ Sun Jun 25 2017 21:37:56 GMT-0400 (EDT)
+[debug] [2017-06-26T01:37:56.692Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/DonB/Desktop/Git-Stage/dinnerandamovie'...
+[info] 
+[debug] [2017-06-26T01:37:56.696Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/dinnerandamovie-87b5e  
+ Sun Jun 25 2017 21:37:56 GMT-0400 (EDT)
+[debug] [2017-06-26T01:37:57.022Z] <<< HTTP RESPONSE 200
+[debug] [2017-06-26T01:37:57.022Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/275851238648/clients/_:getWebAppConfig  
+ Sun Jun 25 2017 21:37:57 GMT-0400 (EDT)
+[debug] [2017-06-26T01:37:57.789Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
