@@ -12,23 +12,25 @@ body {
 	margin: auto;
 	color: white;
 	width: 100%;
-	padding: 260px 20px 20px 20px;
+	padding: 320px 20px 20px 20px;
 	height: 500px;
 	margin-bottom: 20px;
 }
+
 
 .goArea {
 	margin-top: 0px;
 	text-align: center;
 	width: 100%;
-	height: 550px;
+	height: 600px;
 	color: white;
-	margin-bottom: 0px;
+	
 	
 }
 
+
 	#movieChosen {
-		
+
 		margin: 20px;	
 		height: 450px;
 		width: 350px;
@@ -36,7 +38,6 @@ body {
 	}
 
 	#dinnerChosen {
-		
 		margin: 20px;
 		height: 450px;
 		width: 350px;
@@ -49,21 +50,14 @@ body {
 	color: white;
 }
 
-.loginButtons {
+
+
+
+h2 {
 	text-align: center;
+	color: white;
 }
 
-	#facebook-button {
-	
-		height: 50px;
-		width: 200px;
-	}
-
-	#google-button {
-	
-	height: 50px;
-	width: 200px;
-	}
 
 #settings-button {
 	height: 35px;
@@ -100,6 +94,9 @@ body {
 		height: 400px;
 
 	}
+
+
+
 
 	.navbar-toggle {
 		display: block;
@@ -164,5 +161,8 @@ body {
 		height: 240px;
 
 	}
+
+
+
 }
 
