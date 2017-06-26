@@ -4,6 +4,7 @@ $(document).ready(function () {
 
     // Initialize Firebase
 
+
     var config = {
         apiKey: "AIzaSyDwvX6WztC5DIZ3fZaWG7O8z86qBrIndyk",
         authDomain: "te2timekeeper.firebaseapp.com",
@@ -87,7 +88,7 @@ $(document).ready(function () {
     }
     //Check to see if the logged on user is an admin before displaying the Admin Menu
 
-    function getAppUserProfile() {
+    function getAppUserProfile(email) {
         //Get the app profile from the user that just logged in.
     }
 
@@ -103,27 +104,6 @@ $(document).ready(function () {
 
     });
 
-    $("#btnUserMngr").click(function () {
-        console.log("Switching view to usermanager");
-        $("#tickTime").hide();
-        $("#qbProjects").hide();
-        $("#userManager").show();
-
-    });
-
-    $("#btnRefreshTickData").click(function () {
-        console.log("Refreshing TickTime data ---- ");
-        queryTick("2017-05-01", "2017-05-31");
-
-    });
-
-    $("#btnTickTime, #btnQBData").click(function () {
-        console.log("Switching view to Mainiew");
-        $("#tickTime").show();
-        $("#qbProjects").show();
-        $("#userManager").hide();
-
-    });
 
     function deleteUser() {
         //Connect to the db
@@ -132,5 +112,8 @@ $(document).ready(function () {
         var user = firebase.database().ref("users/" + $(this).attr("id"));
         user.remove();
     }
+
+
+
 
 });

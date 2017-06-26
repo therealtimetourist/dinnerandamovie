@@ -3,28 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Back End Test Page</title>
+<<<<<<< HEAD
+=======
+    <link href="assets/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
+>>>>>>> 6a70e8ddcff0f6731d7e04c7b732f0caef03132e
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+<<<<<<< HEAD
     <script type="text/javascript" src="assets/javascript/jquery-3.2.1.js"></script>
+=======
+    <script type="text/javascript" src="../assets/javascript/jquery-3.2.1.js"></script>
+>>>>>>> 6a70e8ddcff0f6731d7e04c7b732f0caef03132e
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
     <script src="assets/javascript/moment.js"></script>
+<<<<<<< HEAD
     <link rel="stylesheet" href="assets/css/back-end-style.css">
     <script src="assets/javascript/back_end_code.js"></script>
 
 </head>
 <body>
+=======
+    <link rel="stylesheet" href="../assets/css/back-end-style.css">
+    <script src="assets/javascript/back_end_code.js"></script>
+
+</head>
+<body onload="">
+>>>>>>> 6a70e8ddcff0f6731d7e04c7b732f0caef03132e
 <div class="container">
     <div class="jumbotron">
         <h1>Back End Test Page</h1>
         <p>...</p>
         <p><a href='signin.html' class="btn btn-primary btn-lg" href="#" role="button">Log in</a></p>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6a70e8ddcff0f6731d7e04c7b732f0caef03132e
     </div>
     <div class="row">
         <div class="col-md-3">
@@ -36,11 +56,21 @@
                         </div>
                         <div class="panel-body" id="currentUserInfoPanel">
                             <div class="media">
+<<<<<<< HEAD
                                 <img class="d-flex mr-3" src="..." alt="Generic placeholder image"
                                      id="currentUserImage">
                                 <div class="media-body">
                                     <h5 class="mt-0" id="currentUserName">Media heading</h5>
                                     <span id="currentUserInfo">User Info</span>
+=======
+                                <img class="d-flex mr-3" src="" alt="Generic placeholder image"
+                                     id="currentUserImage">
+                                <div class="media-body">
+                                    <h5 class="mt-0" id="currentUserName">Media heading</h5>
+                                    <div id="currentUserInfo">User Info</div>
+                                    <div id="latitude">Lat Info</div>
+                                    <div id="longitude">Lon Info</div>
+>>>>>>> 6a70e8ddcff0f6731d7e04c7b732f0caef03132e
                                 </div>
                             </div>
                         </div>
@@ -83,7 +113,10 @@
                 </div>
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6a70e8ddcff0f6731d7e04c7b732f0caef03132e
             </div>
         </div>
     </div>
@@ -187,6 +220,11 @@
                             sessionStorage.setItem('entryDate', childData.entryDate);
                             sessionStorage.setItem('lastChangeDate', childData.lastChangeDate);
                             sessionStorage.setItem('lastModifiedBy', childData.lastModifiedBy);
+<<<<<<< HEAD
+=======
+                            sessionStorage.setItem('storedUserProfile', childData);
+
+>>>>>>> 6a70e8ddcff0f6731d7e04c7b732f0caef03132e
                             userProfileKey = childKey;
 
                         });
@@ -241,7 +279,11 @@
     });
 
 
+<<<<<<< HEAD
     function addNewUser(fullName, email, role) {
+=======
+    function addNewUser(fullName, email, role, preferences) {
+>>>>>>> 6a70e8ddcff0f6731d7e04c7b732f0caef03132e
         console.log("---------Add User function");
         //Prepare the user object
         var newUser = {
@@ -251,7 +293,40 @@
             userActive: true,
             entryDate: Date.now(),
             lastChangeDate: Date.now(),
+<<<<<<< HEAD
             lastModifiedBy: sessionStorage.getItem('email')
+=======
+            lastModifiedBy: sessionStorage.getItem('email'),
+            preferences: {
+                restaurantPrefs: {
+                    fastFood: false,
+                    casual: false,
+                    fineDining: false,
+                    cafe: false,
+                    foodTruck: false,
+                    buffet: false,
+                    indian: false,
+                    mexican: false
+                },
+                moviePrefs: {
+                    horror: false,
+                    comedy: false,
+                    animation: false,
+                    romance: false,
+                    action: false,
+                    documentary: false,
+                    foreign: false,
+                    family: false,
+                    ratings: {
+                        G: false,
+                        PG: false,
+                        PG13: false,
+                        R: false
+                    }
+                },
+                searchRadius: 10
+            }
+>>>>>>> 6a70e8ddcff0f6731d7e04c7b732f0caef03132e
         };
 
         //Get a unique key
@@ -262,6 +337,34 @@
         firebase.database().ref("users/" + newUserID).set(newUser);
 
     }
+<<<<<<< HEAD
+=======
+
+    var $lat = $("#latitude");
+    var $long = $("#longitude");
+
+    /**
+     * This functionality returns the location of the user that has come to the website if they give you that permission
+     */
+    function getLocation() {
+        console.log('This is the get location function ')
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            $lat.text("Geolocation is not supported by this browser.");
+        }
+    }
+
+    function showPosition(position) {
+        console.log('Current Position is ' + position.coords.latitude + ", " + position.coords.longitude)
+        $lat.text("Latitude: " + position.coords.latitude);
+        $long.text("Longitude: " + position.coords.longitude);
+        sessionStorage.setItem("currentLat", position.coords.latitude);
+        sessionStorage.setItem("currentLong", position.coords.longitude);
+    }
+
+    getLocation();
+>>>>>>> 6a70e8ddcff0f6731d7e04c7b732f0caef03132e
 </script>
 </body>
 </html>

@@ -100,31 +100,139 @@ $(document).ready(function () {
         }, function (error) {
             console.error("Sign Out Error", error);
         });
+    });
+
+    $("#btnRefreshRestaurants").click(function () {
+
+        get4SquareVenues("movie%20theater");
+        get4SquareVenues("restaurants");
 
     });
 
-    $("#btnUserMngr").click(function () {
-        console.log("Switching view to usermanager");
-        $("#tickTime").hide();
-        $("#qbProjects").hide();
-        $("#userManager").show();
+    /**
+     * This function takes a set of Query Terms and returns venues from the 4Square Service
+     * @param queryTerms
+     * @returns {Array}
+     */
+    function get4SquareVenues(queryTerms) {
+        //Connect to FourSquare and run the search based on the paramenters set.
+        var url = "";
+        var ll = sessionStorage.getItem('currentLat') + "%2C%20" + sessionStorage.getItem('currentLong');
+        var limit = 10;
+        url = "https://api.foursquare.com/v2/venues/explore?v=20131016";
+        url += "&client_id=" + "XUYA5NQ3ME2D0SSMNKUA5ALL4I0DBWG13M42U1PQII5PBWDH";
+        url += "&client_secret=" + "BNWEGFBMCZW0QA5VA2E1HZ20NG1FT4D0OEBBVQIRICFGTHTY";
+        url += "&ll=" + ll;
+        url += "&limit=" + limit;
+        url += "&query=" + queryTerms;
+        url += "&venuePhotos=1";
+        url += "&radius=" + "17600";
 
-    });
+        //url = "https://api.foursquare.com/v2/venues/search?v=20161016&ll=41.878114%2C%20-87.629798&query=coffee&intent=checkin&client_id=XUYA5NQ3ME2D0SSMNKUA5ALL4I0DBWG13M42U1PQII5PBWDH&client_secret=BNWEGFBMCZW0QA5VA2E1HZ20NG1FT4D0OEBBVQIRICFGTHTY";
+        console.log(url);
+        $.ajax({
+            url: url,
+            method: "GET"
+        }).done(function (response) {
+            console.log("This is the response object: ");
+            console.log(response.response);
+            var items = response.response.groups[0].items;
+            console.log(" This is the list of items from 4Square ");
+            console.log(items);
 
-    $("#btnRefreshTickData").click(function () {
-        console.log("Refreshing TickTime data ---- ");
-        queryTick("2017-05-01", "2017-05-31");
+            if (queryTerms == "movie%20theater") {
+                for (var i = 0; i < items.length; i++) {
+                    addTheaterRow(items[i].venue);
+                }
+            }
 
-    });
+            if (queryTerms == "restaurants") {
+                for (var i = 0; i < items.length; i++) {
+                    addRestaurantRow(items[i].venue);
+                }
+            }
 
-    $("#btnTickTime, #btnQBData").click(function () {
-        console.log("Switching view to Mainiew");
-        $("#tickTime").show();
-        $("#qbProjects").show();
-        $("#userManager").hide();
+        });
 
-    });
+    }
 
+    /**
+     * This function takes an individual venue item and adds it to a table row object
+     * @param venue
+     */
+    function addTheaterRow(venue) {
+
+        var $newRow = $("<tr>");
+        var $newCol1 = $("<td>");
+        var $newCol2 = $("<td>");
+        var $newCol3 = $("<td>");
+        var $newCol4 = $("<td>");
+        var $newCol5 = $("<td>");
+        var $newCol6 = $("<td>");
+        var $newCol7 = $("<td>");
+
+        //Column layout tied to the theater table
+        $newCol1.text('');
+        $newCol2.text(venue.name);
+        $newCol3.text(venue.location.address);
+        $newCol4.text(venue.location.city);
+        $newCol5.text(venue.location.postalCode);
+        $newCol6.text(venue.location.distance);
+
+        $newRow.append($newCol1);
+        $newRow.append($newCol2);
+        $newRow.append($newCol3);
+        $newRow.append($newCol4);
+        $newRow.append($newCol5);
+        $newRow.append($newCol6);
+
+
+        $("#theaterTable").append($newRow);
+
+    }
+
+
+    /**
+     * This function takes an individual venue item and adds it to a table row object
+     * @param venue
+     */
+    function addRestaurantRow(venue) {
+
+        var $newRow = $("<tr>");
+        var $newCol1 = $("<td>");
+        var $newCol2 = $("<td>");
+        var $newCol3 = $("<td>");
+        var $newCol4 = $("<td>");
+        var $newCol5 = $("<td>");
+        var $newCol6 = $("<td>");
+        var $newCol7 = $("<td>");
+
+        //Column layout tied to the theater table
+
+        $newCol1.text(venue.name);
+        $newCol2.text(venue.location.address);
+        $newCol3.text(venue.location.city);
+        $newCol4.text(venue.categories[0].name);
+        $newCol5.text(venue.location.distance);
+        $newCol6.text(venue.rating);  //rating
+        $newCol7.text(venue.price.tier);  //price
+
+        $newRow.append($newCol1);
+        $newRow.append($newCol2);
+        $newRow.append($newCol3);
+        $newRow.append($newCol4);
+        $newRow.append($newCol5);
+        $newRow.append($newCol6);
+        $newRow.append($newCol7);
+
+        $("#restaurantTable").append($newRow);
+
+    }
+
+
+    /**
+     * This function takes the Key of the selected user and deletes it from the firebase table
+     */
     function deleteUser() {
         //Connect to the db
         console.log("Delete ID " + $(this).attr("id"));
@@ -133,4 +241,5 @@ $(document).ready(function () {
         user.remove();
     }
 
-});
+})
+;

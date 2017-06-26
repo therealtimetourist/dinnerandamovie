@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Back End Test Page</title>
+    <link href="assets/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -19,12 +20,12 @@
     <script src="assets/javascript/back_end_code.js"></script>
 
 </head>
-<body>
+<body onload="">
 <div class="container">
     <div class="jumbotron">
-        <h1>Back End Test Page</h1>
-        <p>...</p>
+        <h2>Back End Test Page</h2>
         <p><a href='signin.html' class="btn btn-primary btn-lg" href="#" role="button">Log in</a></p>
+
     </div>
     <div class="row">
         <div class="col-md-3">
@@ -36,54 +37,136 @@
                         </div>
                         <div class="panel-body" id="currentUserInfoPanel">
                             <div class="media">
-                                <img class="d-flex mr-3" src="..." alt="Generic placeholder image"
+                                <img class="d-flex mr-3" src="" alt="Generic placeholder image"
                                      id="currentUserImage">
                                 <div class="media-body">
                                     <h5 class="mt-0" id="currentUserName">Media heading</h5>
-                                    <span id="currentUserInfo">User Info</span>
+                                    <div id="currentUserInfo">User Info</div>
+                                    <div id="latitude">Lat Info</div>
+                                    <div id="longitude">Lon Info</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default panel-transparent">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-cutlery" aria-hidden="true"></i> Venue Search</h3>
+                        </div>
+                        <div class="panel-body" id="restaurantSearch">
+                            <span id="restaurantMessage">Use the button below to refresh the theater and restaurant results</span>
+                            <p><a class="btn btn-success btn-md" href="#" role="button" id="btnRefreshRestaurants">Refresh</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-9">
-            <div class="panel panel-default panel-transparent">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i> User Manager</h3>
-                    <span id="cmdBtn">
+            <!-- User Manager Row -->
+            <div class="row">
+                <div class="panel panel-default panel-transparent">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i> User Manager</h3>
+                        <span id="cmdBtn">
                     <button type="button" class="btn btn-success btn-xs"
                             id="btnAddUser" data-toggle="modal" data-target="#addUserModal">
                     <i class="fa fa-user-plus" aria-hidden="true"></i> Add User</button>
                 </span>
-                </div>
-                <div class="panel-body" id="users">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th>Flags</th>
-                                <th>Active</th>
-                                <th>User Name</th>
-                                <th>User Email</th>
-                                <th>Role</th>
-                                <th>Last Login</th>
-                                <th>Create Date</th>
-                            </tr>
-                            </thead>
-                            <tbody id="userTable">
+                    </div>
+                    <div class="panel-body" id="users">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Flags</th>
+                                    <th>Active</th>
+                                    <th>User Name</th>
+                                    <th>User Email</th>
+                                    <th>Role</th>
+                                    <th>Last Login</th>
+                                    <th>Create Date</th>
+                                </tr>
+                                </thead>
+                                <tbody id="userTable">
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+
+                        </div>
 
                     </div>
 
+
                 </div>
+            </div>
+            <!-- Movie Theater Search Results-->
+            <div class="row">
+                <div class="panel panel-default panel-transparent">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i> Movie Theater Search</h3>
+                    </div>
+                    <div class="panel-body" id="theaters">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Theater Name</th>
+                                    <th>Address</th>
+                                    <th>City</th>
+                                    <th>Zip</th>
+                                    <th>Distance</th>
+                                </tr>
+                                </thead>
+                                <tbody id="theaterTable">
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Restaurant Search Results-->
+            <div class="row">
+                <div class="panel panel-default panel-transparent">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-users" aria-hidden="true"></i> Local Restaurants</h3>
+
+                    </div>
+                    <div class="panel-body" id="users">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+
+                                    <th>Rest Name</th>
+                                    <th>Address</th>
+                                    <th>City</th>
+                                    <th>Category</th>
+                                    <th>Distance</th>
+                                    <th>Rating</th>
+                                    <th>Price</th>
+
+                                </tr>
+                                </thead>
+                                <tbody id="restaurantTable">
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
 
 
-
+                </div>
             </div>
         </div>
     </div>
@@ -187,6 +270,8 @@
                             sessionStorage.setItem('entryDate', childData.entryDate);
                             sessionStorage.setItem('lastChangeDate', childData.lastChangeDate);
                             sessionStorage.setItem('lastModifiedBy', childData.lastModifiedBy);
+                            sessionStorage.setItem('storedUserProfile', childData);
+
                             userProfileKey = childKey;
 
                         });
@@ -241,7 +326,11 @@
     });
 
 
-    function addNewUser(fullName, email, role) {
+    /**
+     * This functionality plugs a new user into the data base.
+     *
+     */
+    function addNewUser(fullName, email, role, preferences) {
         console.log("---------Add User function");
         //Prepare the user object
         var newUser = {
@@ -251,7 +340,36 @@
             userActive: true,
             entryDate: Date.now(),
             lastChangeDate: Date.now(),
-            lastModifiedBy: sessionStorage.getItem('email')
+            lastModifiedBy: sessionStorage.getItem('email'),
+            preferences: {
+                restaurantPrefs: {
+                    fastFood: false,
+                    casual: false,
+                    fineDining: false,
+                    cafe: false,
+                    foodTruck: false,
+                    buffet: false,
+                    indian: false,
+                    mexican: false
+                },
+                moviePrefs: {
+                    horror: false,
+                    comedy: false,
+                    animation: false,
+                    romance: false,
+                    action: false,
+                    documentary: false,
+                    foreign: false,
+                    family: false,
+                    ratings: {
+                        G: false,
+                        PG: false,
+                        PG13: false,
+                        R: false
+                    }
+                },
+                searchRadius: 10
+            }
         };
 
         //Get a unique key
@@ -262,6 +380,31 @@
         firebase.database().ref("users/" + newUserID).set(newUser);
 
     }
+
+    var $lat = $("#latitude");
+    var $long = $("#longitude");
+
+    /**
+     * This functionality returns the location of the user that has come to the website if they give you that permission
+     */
+    function getLocation() {
+        console.log('This is the get location function ')
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            $lat.text("Geolocation is not supported by this browser.");
+        }
+    }
+
+    function showPosition(position) {
+        console.log('Current Position is ' + position.coords.latitude + ", " + position.coords.longitude)
+        $lat.text("Latitude: " + position.coords.latitude);
+        $long.text("Longitude: " + position.coords.longitude);
+        sessionStorage.setItem("currentLat", position.coords.latitude);
+        sessionStorage.setItem("currentLong", position.coords.longitude);
+    }
+
+    getLocation();
 </script>
 </body>
 </html>
