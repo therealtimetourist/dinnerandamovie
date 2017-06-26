@@ -113,7 +113,4 @@ $(document).ready(function () {
         user.remove();
     }
 
-
-
-
 });
