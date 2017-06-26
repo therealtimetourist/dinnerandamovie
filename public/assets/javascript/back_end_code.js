@@ -130,10 +130,14 @@ $(document).ready(function () {
 
         //url = "https://api.foursquare.com/v2/venues/search?v=20161016&ll=41.878114%2C%20-87.629798&query=coffee&intent=checkin&client_id=XUYA5NQ3ME2D0SSMNKUA5ALL4I0DBWG13M42U1PQII5PBWDH&client_secret=BNWEGFBMCZW0QA5VA2E1HZ20NG1FT4D0OEBBVQIRICFGTHTY";
         console.log(url);
+        addEventLogEntry(sessionStorage.getItem('email'), '4SquareQuery', url);
         $.ajax({
             url: url,
             method: "GET"
         }).done(function (response) {
+
+            addEventLogEntry(sessionStorage.getItem('email'), '4SquareQueryResponse', response.response);
+
             console.log("This is the response object: ");
             console.log(response.response);
             var items = response.response.groups[0].items;
@@ -191,7 +195,6 @@ $(document).ready(function () {
 
     }
 
-
     /**
      * This function takes an individual venue item and adds it to a table row object
      * @param venue
@@ -229,7 +232,6 @@ $(document).ready(function () {
 
     }
 
-
     /**
      * This function takes the Key of the selected user and deletes it from the firebase table
      */
@@ -241,5 +243,31 @@ $(document).ready(function () {
         user.remove();
     }
 
+    /**
+     * This function adds an entry into the event log for troubleshooting searches later
+     * @param userName
+     * @param eventType
+     * @param eventText
+     */
+    function addEventLogEntry(userEmail, eventType, eventText) {
+        console.log("---------Add Event function");
+        //Prepare the user object
+        var event = {
+            userEmail: userEmail,
+            eventType: eventType,
+            eventText: eventText,
+            eventDate: moment(Date.now()).format("M/D/YYYY H:mm"),
+            latitude: sessionStorage.getItem('currentLat'),
+            longitude: sessionStorage.getItem('currentLong')
+        };
+
+        //Get a unique key
+        //Get a key for a new Post.
+        var newEventID = firebase.database().ref().child("events").push().key;
+
+        //Add the event
+        firebase.database().ref("events/" + newEventID).set(event);
+
+    }
 })
 ;
