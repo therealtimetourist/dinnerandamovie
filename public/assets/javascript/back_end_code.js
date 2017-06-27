@@ -2,6 +2,7 @@ var sessionUser = sessionStorage.getItem('email');
 
 $(document).ready(function() {
 
+
   // Initialize Firebase
 
   var config = {
@@ -309,7 +310,7 @@ function getRecommendations(userPref) {
   var recommendation =
       {
         restaurant: {
-          restaurantName: '',
+          restaurantName: 'Tiki Taco',
           location: {
             address: '',
             city: '',
@@ -321,7 +322,7 @@ function getRecommendations(userPref) {
           price: '',
         },
         movie: {
-          theaterName: '',
+          theaterName: 'Jo Mamas House',
           location: {
             address: '',
             city: '',
@@ -338,8 +339,8 @@ function getRecommendations(userPref) {
 
   for (var i = 0; i < 3; i++) {
     var newRec = recommendation;
-    recommendation.movie.movieName = ' This is movie #' + i;
-    recommendations.push(recommendation);
+    newRec.movie.movieName = ' This is movie #' + i;
+    recommendations.push(newRec);
   }
 
   return recommendations;

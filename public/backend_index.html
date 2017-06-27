@@ -59,6 +59,9 @@
                         <div class="panel-body" id="restaurantSearch">
                             <span id="restaurantMessage">Use the button below to refresh the theater and restaurant results</span>
                             <p><a class="btn btn-success btn-md" href="#" role="button" id="btnRefreshRestaurants">Refresh</a>
+                                <a class="btn btn-success btn-md" href="#" data-toggle="modal"
+                                   data-target="#showRecommendationsModal"
+                                   role="button" id="btnShowRecommendations">Recommendations</a>
                             </p>
                         </div>
                     </div>
@@ -211,7 +214,7 @@
 </div>
 
 <!-- Modal -->
-<div id="showRecommendations" class="modal fade" role="dialog">
+<div id="showRecommendationsModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -221,30 +224,97 @@
                 <h4 class="modal-title"><i class="fa fa-user" aria-hidden="true"></i> Show Recommendations</h4>
             </div>
             <div class="modal-body">
-                <!--Image Card-->
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <div class="view overlay hm-white-slight z-depth-1">
-                            <img src="https://mdbootstrap.com/images/reg/reg%20(2).jpg" class="img-responsive" alt="">
-                            <a href="#">
-                                <div class="mask waves-effect"></div>
-                            </a>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <!--Image Card-->
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                <div class="view overlay hm-white-slight z-depth-1">
+                                    <img src="https://mdbootstrap.com/images/reg/reg%20(2).jpg" class="img-responsive"
+                                         alt="">
+                                    <a href="#">
+                                        <div class="mask waves-effect"></div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h5>Card title</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id amet, quisquam modi
+                                    nobis
+                                    nostrum iusto incidunt dolore assumenda delectus officia quia, sequi eum
+                                    perspiciatis
+                                    architecto. Ullam voluptatum, facere nihil quidem.</p>
+                            </div>
+                            <!--Buttons-->
+                            <div class="card-btn text-center">
+                                <a href="#" class="btn btn-primary btn-md waves-effect waves-light">Read more</a>
+                                <a href="#" class="btn btn-default btn-md waves-effect waves-light">Buy now</a>
+                            </div>
+                            <!--/.Buttons-->
                         </div>
+                        <!--Image Card-->
                     </div>
-                    <div class="card-content">
-                        <h5>Card title</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id amet, quisquam modi nobis
-                            nostrum iusto incidunt dolore assumenda delectus officia quia, sequi eum perspiciatis
-                            architecto. Ullam voluptatum, facere nihil quidem.</p>
+                    <div class="col-md-4">
+                        <!--Image Card-->
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                <div class="view overlay hm-white-slight z-depth-1">
+                                    <img src="https://mdbootstrap.com/images/reg/reg%20(2).jpg" class="img-responsive"
+                                         alt="">
+                                    <a href="#">
+                                        <div class="mask waves-effect"></div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h5>Card title</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id amet, quisquam modi
+                                    nobis
+                                    nostrum iusto incidunt dolore assumenda delectus officia quia, sequi eum
+                                    perspiciatis
+                                    architecto. Ullam voluptatum, facere nihil quidem.</p>
+                            </div>
+                            <!--Buttons-->
+                            <div class="card-btn text-center">
+                                <a href="#" class="btn btn-primary btn-md waves-effect waves-light">Read more</a>
+                                <a href="#" class="btn btn-default btn-md waves-effect waves-light">Buy now</a>
+                            </div>
+                            <!--/.Buttons-->
+                        </div>
+                        <!--Image Card-->
                     </div>
-                    <!--Buttons-->
-                    <div class="card-btn text-center">
-                        <a href="#" class="btn btn-primary btn-md waves-effect waves-light">Read more</a>
-                        <a href="#" class="btn btn-default btn-md waves-effect waves-light">Buy now</a>
+                    <div class="col-md-4">
+                        <!--Image Card-->
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                <div class="view overlay hm-white-slight z-depth-1">
+                                    <img src="https://mdbootstrap.com/images/reg/reg%20(2).jpg" class="img-responsive"
+                                         alt="">
+                                    <a href="#">
+                                        <div class="mask waves-effect"></div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h5>Card title</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id amet, quisquam modi
+                                    nobis
+                                    nostrum iusto incidunt dolore assumenda delectus officia quia, sequi eum
+                                    perspiciatis
+                                    architecto. Ullam voluptatum, facere nihil quidem.</p>
+                            </div>
+                            <!--Buttons-->
+                            <div class="card-btn text-center">
+                                <a href="#" class="btn btn-primary btn-md waves-effect waves-light">Read more</a>
+                                <a href="#" class="btn btn-default btn-md waves-effect waves-light">Buy now</a>
+                            </div>
+                            <!--/.Buttons-->
+                        </div>
+                        <!--Image Card-->
                     </div>
-                    <!--/.Buttons-->
                 </div>
-                <!--Image Card-->
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
@@ -260,196 +330,198 @@
 <script type="text/javascript">
 
   // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyBby0z2SGf1_1jTbXXDrcT4LWz6JcVGJYw",
-        authDomain: "dinnerandamovie-87b5e.firebaseapp.com",
-        databaseURL: "https://dinnerandamovie-87b5e.firebaseio.com",
-        projectId: "dinnerandamovie-87b5e",
-        storageBucket: "dinnerandamovie-87b5e.appspot.com",
-        messagingSenderId: "275851238648"
-    };
+  var config = {
+    apiKey: 'AIzaSyBby0z2SGf1_1jTbXXDrcT4LWz6JcVGJYw',
+    authDomain: 'dinnerandamovie-87b5e.firebaseapp.com',
+    databaseURL: 'https://dinnerandamovie-87b5e.firebaseio.com',
+    projectId: 'dinnerandamovie-87b5e',
+    storageBucket: 'dinnerandamovie-87b5e.appspot.com',
+    messagingSenderId: '275851238648',
+  };
 
-    firebase.initializeApp(config);
+  firebase.initializeApp(config);
 
-    initApp = function () {
+  initApp = function() {
 
-        // Initialize Firebase
+    // Initialize Firebase
 
-        //firebase.initializeApp(config);
+    //firebase.initializeApp(config);
 
-        firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(function(user) {
 
-          if (user) {
-                // User is signed in.
-                $('#sign-in-status').text('');
-                console.log('Signing in a user ' + moment(Date.now()).calendar());
-                var displayName = user.displayName;
-                var email = user.email;
-                var emailVerified = user.emailVerified;
-                var photoURL = user.photoURL;
-                var uid = user.uid;
-                var phoneNumber = user.phoneNumber;
-                var providerData = user.providerData;
+      if (user) {
+        // User is signed in.
+        $('#sign-in-status').text('');
+        console.log('Signing in a user ' + moment(Date.now()).calendar());
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var photoURL = user.photoURL;
+        var uid = user.uid;
+        var phoneNumber = user.phoneNumber;
+        var providerData = user.providerData;
 
+        user.getToken().then(function(accessToken) {
+          console.log('Function get token');
 
-                user.getToken().then(function (accessToken) {
-                    console.log('Function get token');
+          sessionStorage.setItem('displayName', displayName);
+          sessionStorage.setItem('email', email);
+          sessionStorage.setItem('emailVerified', emailVerified);
+          sessionStorage.setItem('photoURL', photoURL);
+          sessionStorage.setItem('uid', uid);
+          sessionStorage.setItem('phoneNumber', phoneNumber);
+          sessionStorage.setItem('providerData', providerData);
 
-                    sessionStorage.setItem('displayName', displayName)
-                    sessionStorage.setItem('email', email);
-                    sessionStorage.setItem('emailVerified', emailVerified);
-                    sessionStorage.setItem('photoURL', photoURL);
-                    sessionStorage.setItem('uid', uid);
-                    sessionStorage.setItem('phoneNumber', phoneNumber);
-                    sessionStorage.setItem('providerData', providerData);
+          var userProfileKey = '';
+          firebase.database().
+              ref().
+              child('users').
+              orderByChild('userEmail').
+              equalTo(email).
+              on('value', function(snapshot) {
+                console.log('This is the snapshot key...' + snapshot.val());
+                snapshot.forEach(function(childSnapshot) {
+                  var childKey = childSnapshot.key;
+                  var childData = childSnapshot.val();
+                  console.log('This is the data key...' + childKey);
+                  console.log('This is the user role ...' + childData.userRole);
+                  sessionStorage.setItem('userRole', childData.userRole);
+                  sessionStorage.setItem('entryDate', childData.entryDate);
+                  sessionStorage.setItem('lastChangeDate', childData.lastChangeDate);
+                  sessionStorage.setItem('lastModifiedBy', childData.lastModifiedBy);
+                  sessionStorage.setItem('storedUserProfile', childData);
 
-                    var userProfileKey = "";
-                    firebase.database().ref().child('users').orderByChild('userEmail').equalTo(email).on("value", function (snapshot) {
-                        console.log('This is the snapshot key...' + snapshot.val());
-                        snapshot.forEach(function (childSnapshot) {
-                            var childKey = childSnapshot.key;
-                            var childData = childSnapshot.val();
-                            console.log('This is the data key...' + childKey);
-                            console.log('This is the user role ...' + childData.userRole);
-                            sessionStorage.setItem('userRole', childData.userRole);
-                            sessionStorage.setItem('entryDate', childData.entryDate);
-                            sessionStorage.setItem('lastChangeDate', childData.lastChangeDate);
-                            sessionStorage.setItem('lastModifiedBy', childData.lastModifiedBy);
-                            sessionStorage.setItem('storedUserProfile', childData);
-
-                            userProfileKey = childKey;
-
-                        });
-                    });
-
-                    var userUpdate = {
-                        userDisplayName: displayName,
-                        userEmail: email,
-                        userRole: sessionStorage.getItem('userRole'),
-                        userActive: true,
-                        entryDate: sessionStorage.getItem('entryDate'),
-                        lastChangeDate: sessionStorage.getItem('lastChangeDate'),
-                        lastLoginDate: Date.now(),
-                        lastModifiedBy: sessionStorage.getItem('lastModifiedBy')
-                    };
-
-                    //Write the current login back to the database
-                    //updateUser(userProfileKey, userUpdate);
-
-                    //Go back to the data base and get the user role based on the logged in user.
-                    $('#currentUserImage').attr('src', photoURL);
-                    $('#currentUserImage').attr('width', '48px');
-                    $('#currentUserName').text(displayName);
-                    $('#currentUserInfo').text(email);
-
-                    $(".panel").show();
-
+                  userProfileKey = childKey;
 
                 });
-            } else {
-                // User is signed out.
-                $('#sign-in-status').text('You are currently signed out');
-                //$('.panel').hide();
-            }
-        }, function (error) {
-            console.log(error);
+              });
+
+          var userUpdate = {
+            userDisplayName: displayName,
+            userEmail: email,
+            userRole: sessionStorage.getItem('userRole'),
+            userActive: true,
+            entryDate: sessionStorage.getItem('entryDate'),
+            lastChangeDate: sessionStorage.getItem('lastChangeDate'),
+            lastLoginDate: Date.now(),
+            lastModifiedBy: sessionStorage.getItem('lastModifiedBy'),
+          };
+
+          //Write the current login back to the database
+          //updateUser(userProfileKey, userUpdate);
+
+          //Go back to the data base and get the user role based on the logged in user.
+          $('#currentUserImage').attr('src', photoURL);
+          $('#currentUserImage').attr('width', '48px');
+          $('#currentUserName').text(displayName);
+          $('#currentUserInfo').text(email);
+
+          $('.panel').show();
+
         });
+      } else {
+        // User is signed out.
+        $('#sign-in-status').text('You are currently signed out');
+        //$('.panel').hide();
+      }
+    }, function(error) {
+      console.log(error);
+    });
+  };
+
+  window.addEventListener('load', function() {
+    initApp();
+
+    $('#btnModAddUser').click(function() {
+
+      console.log('---------Add User button clicked');
+      var fullName = $('#userDisplayName').val().trim();
+      var email = $('#userEmail').val().trim();
+      var role = $('#userRole option:selected').text();
+
+      addNewUser(fullName, email, role);
+    });
+  });
+
+  /**
+   * This functionality plugs a new user into the data base.
+   *
+   */
+  function addNewUser(fullName, email, role, preferences) {
+    console.log('---------Add User function');
+    //Prepare the user object
+    var newUser = {
+      userDisplayName: fullName,
+      userEmail: email,
+      userRole: role,
+      userActive: true,
+      entryDate: Date.now(),
+      lastChangeDate: Date.now(),
+      lastModifiedBy: sessionStorage.getItem('email'),
+      preferences: {
+        restaurantPrefs: {
+          fastFood: false,
+          casual: false,
+          fineDining: false,
+          cafe: false,
+          foodTruck: false,
+          buffet: false,
+          indian: false,
+          mexican: false,
+        },
+        moviePrefs: {
+          horror: false,
+          comedy: false,
+          animation: false,
+          romance: false,
+          action: false,
+          documentary: false,
+          foreign: false,
+          family: false,
+          ratings: {
+            G: false,
+            PG: false,
+            PG13: false,
+            R: false,
+          },
+        },
+        searchRadius: 10,
+      },
     };
 
-    window.addEventListener('load', function () {
-        initApp()
+    //Get a unique key
+    //Get a key for a new Post.
+    var newUserID = firebase.database().ref().child('users').push().key;
 
-        $("#btnModAddUser").click(function () {
+    //Add the user
+    firebase.database().ref('users/' + newUserID).set(newUser);
 
-            console.log("---------Add User button clicked");
-            var fullName = $("#userDisplayName").val().trim();
-            var email = $("#userEmail").val().trim();
-            var role = $("#userRole option:selected").text();
+  }
 
-            addNewUser(fullName, email, role);
-        });
-    });
+  var $lat = $('#latitude');
+  var $long = $('#longitude');
 
-
-    /**
-     * This functionality plugs a new user into the data base.
-     *
-     */
-    function addNewUser(fullName, email, role, preferences) {
-        console.log("---------Add User function");
-        //Prepare the user object
-        var newUser = {
-            userDisplayName: fullName,
-            userEmail: email,
-            userRole: role,
-            userActive: true,
-            entryDate: Date.now(),
-            lastChangeDate: Date.now(),
-            lastModifiedBy: sessionStorage.getItem('email'),
-            preferences: {
-                restaurantPrefs: {
-                    fastFood: false,
-                    casual: false,
-                    fineDining: false,
-                    cafe: false,
-                    foodTruck: false,
-                    buffet: false,
-                    indian: false,
-                    mexican: false
-                },
-                moviePrefs: {
-                    horror: false,
-                    comedy: false,
-                    animation: false,
-                    romance: false,
-                    action: false,
-                    documentary: false,
-                    foreign: false,
-                    family: false,
-                    ratings: {
-                        G: false,
-                        PG: false,
-                        PG13: false,
-                        R: false
-                    }
-                },
-                searchRadius: 10
-            }
-        };
-
-        //Get a unique key
-        //Get a key for a new Post.
-        var newUserID = firebase.database().ref().child("users").push().key;
-
-        //Add the user
-        firebase.database().ref("users/" + newUserID).set(newUser);
-
+  /**
+   * This functionality returns the location of the user that has come to the website if they give you that permission
+   */
+  function getLocation() {
+    console.log('This is the get location function ');
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      $lat.text('Geolocation is not supported by this browser.');
     }
+  }
 
-    var $lat = $("#latitude");
-    var $long = $("#longitude");
+  function showPosition(position) {
+    console.log('Current Position is ' + position.coords.latitude + ', ' + position.coords.longitude);
+    $lat.text('Latitude: ' + position.coords.latitude);
+    $long.text('Longitude: ' + position.coords.longitude);
+    sessionStorage.setItem('currentLat', position.coords.latitude);
+    sessionStorage.setItem('currentLong', position.coords.longitude);
+  }
 
-    /**
-     * This functionality returns the location of the user that has come to the website if they give you that permission
-     */
-    function getLocation() {
-        console.log('This is the get location function ')
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            $lat.text("Geolocation is not supported by this browser.");
-        }
-    }
-
-    function showPosition(position) {
-        console.log('Current Position is ' + position.coords.latitude + ", " + position.coords.longitude)
-        $lat.text("Latitude: " + position.coords.latitude);
-        $long.text("Longitude: " + position.coords.longitude);
-        sessionStorage.setItem("currentLat", position.coords.latitude);
-        sessionStorage.setItem("currentLong", position.coords.longitude);
-    }
-
-    getLocation();
+  getLocation();
 </script>
 </body>
 </html>
