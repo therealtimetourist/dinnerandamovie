@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <title>Back End Test Page</title>
     <link href="assets/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
-
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/back-end-style.css">
+    <link rel="stylesheet" href="assets/MDBFree/css/mdb.css">
 
     <script type="text/javascript" src="../assets/javascript/jquery-3.2.1.js"></script>
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-
     <script src="assets/javascript/moment.js"></script>
-    <link rel="stylesheet" href="../assets/css/back-end-style.css">
     <script src="assets/javascript/back_end_code.js"></script>
+    <script src="assets/MDBFree/js/mdb.js"></script>
+
 
 </head>
 <body onload="">
@@ -210,10 +210,56 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div id="showRecommendations" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><i class="fa fa-user" aria-hidden="true"></i> Show Recommendations</h4>
+            </div>
+            <div class="modal-body">
+                <!--Image Card-->
+                <div class="card hoverable">
+                    <div class="card-image">
+                        <div class="view overlay hm-white-slight z-depth-1">
+                            <img src="https://mdbootstrap.com/images/reg/reg%20(2).jpg" class="img-responsive" alt="">
+                            <a href="#">
+                                <div class="mask waves-effect"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h5>Card title</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id amet, quisquam modi nobis
+                            nostrum iusto incidunt dolore assumenda delectus officia quia, sequi eum perspiciatis
+                            architecto. Ullam voluptatum, facere nihil quidem.</p>
+                    </div>
+                    <!--Buttons-->
+                    <div class="card-btn text-center">
+                        <a href="#" class="btn btn-primary btn-md waves-effect waves-light">Read more</a>
+                        <a href="#" class="btn btn-default btn-md waves-effect waves-light">Buy now</a>
+                    </div>
+                    <!--/.Buttons-->
+                </div>
+                <!--Image Card-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
 <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 
 <script type="text/javascript">
-    // Initialize Firebase
+
+  // Initialize Firebase
     var config = {
         apiKey: "AIzaSyBby0z2SGf1_1jTbXXDrcT4LWz6JcVGJYw",
         authDomain: "dinnerandamovie-87b5e.firebaseapp.com",
@@ -232,7 +278,8 @@
         //firebase.initializeApp(config);
 
         firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
+
+          if (user) {
                 // User is signed in.
                 $('#sign-in-status').text('');
                 console.log('Signing in a user ' + moment(Date.now()).calendar());
@@ -248,9 +295,7 @@
                 user.getToken().then(function (accessToken) {
                     console.log('Function get token');
 
-
                     sessionStorage.setItem('displayName', displayName)
-
                     sessionStorage.setItem('email', email);
                     sessionStorage.setItem('emailVerified', emailVerified);
                     sessionStorage.setItem('photoURL', photoURL);
