@@ -7,6 +7,17 @@ body {
 	
 }
 
+.container {
+	color: white;
+}
+
+
+
+#searchRadius {
+	color: black;
+}
+
+
 .battleArea {
 	background: url(../images/couplemovie.jpg) no-repeat center;
 	margin: auto;
@@ -27,7 +38,6 @@ body {
 	
 	
 }
-
 
 	#movieChosen {
 
@@ -50,6 +60,22 @@ body {
 	color: white;
 }
 
+.form-control {
+	text-align: center;
+	width: 200px;
+	margin: auto;
+
+}
+
+#login {
+	text-align: center;
+	margin: auto;
+}
+
+	#name-input {
+		text-align: center;
+	
+}
 
 
 
