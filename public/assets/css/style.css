@@ -67,6 +67,11 @@ body {
 
 }
 
+#login {
+	text-align: center;
+	margin: auto;
+}
+
 	#name-input {
 		text-align: center;
 	

@@ -1,4 +1,7 @@
+
 var sessionUser = sessionStorage.getItem('email');
+
+
 
 $(document).ready(function() {
 
@@ -253,7 +256,7 @@ $(document).ready(function() {
 
 /**
  * This function adds an entry into the event log for troubleshooting searches later
- * @param userName
+ * @param {string} userName The username of the person creating the entry
  * @param eventType
  * @param eventText
  */
@@ -269,6 +272,9 @@ function addEventLogEntry(userEmail, eventType, eventText) {
     longitude: sessionStorage.getItem('currentLong'),
   };
 
+ 
+
+
   //Get a unique key
   //Get a key for a new Post.
   var newEventID = firebase.database().ref().child('events').push().key;
@@ -277,8 +283,13 @@ function addEventLogEntry(userEmail, eventType, eventText) {
   firebase.database().ref('events/' + newEventID).set(event);
 
 }
+/**
+ * This function gets todays date and puts it in format needed for API
+ * @param m Todays date
+ * @param date Todays date in YYYY-MM-DD format
+ * @param {string} zipCode Zip code passed from user input
+ */
 
-//gets today's date and puts in format needed for API
 
 function pullMovies() {
   var m = moment().get('date');
