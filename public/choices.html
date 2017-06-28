@@ -16,7 +16,7 @@
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#"><img src="assets/images/logo.png"></a>
+					<a class="navbar-brand" href="index.html"><img src="assets/images/logo.png"></a>
                     <span id="welcomeMsg"></span>
 				</div>
 			</div>
@@ -29,20 +29,20 @@
 		</div>
 		<!--end main choices-->
 
-		<!--modal-->
-		<div id="myModal" class="modal fade" role="dialog" style="display: none;">
+		<!--movie modal-->
+		<div id="myModal1" class="modal fade" role="dialog" style="display: none;">
 			<div class="modal-dialog modal-lg">
 				<!-- Modal content-->
 				<div class="modal-content">
 					<div class="modal-body">
 						<button type="button" class="close" data-dismiss="modal">×</button>
-						<h4 class="modal-title">Restaurant Details</h4>
+						<h4 class="modal-title">Movie Details</h4>
 						<div class="row">
 							<div class="col-lg-4 col-md-4 col-sm-12 text-center">
 								<img class="image-responsive" alt="dinner choice 1" src="http://via.placeholder.com/400x500">
 							</div>
 							<div class="col-lg-8 col-md-8 col-sm-12 text-center">
-								<h3>Restaurant 1</h3>
+								<h3>Movie 1</h3>
 								<p>
 									Lorem ipsum dolor sit amet
 								</p>
@@ -53,7 +53,33 @@
 				</div>
 			</div>
 		</div>
-		<!--end modal-->
+		<!--end movie modal-->
+
+        <!--restaurant modal-->
+        <div id="myModal2" class="modal fade" role="dialog" style="display: none;">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        <h4 class="modal-title">Restaurant Details</h4>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                                <img class="image-responsive" alt="dinner choice 1" src="http://via.placeholder.com/400x500">
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-12 text-center">
+                                <h3>Restaurant 1</h3>
+                                <p>
+                                    Lorem ipsum dolor sit amet
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <!--end restaurant modal-->
 		
 		<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -66,135 +92,132 @@
 		<script src="assets/javascript/front_end_code.js"></script>
 
 		<script>
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyBby0z2SGf1_1jTbXXDrcT4LWz6JcVGJYw",
-        authDomain: "dinnerandamovie-87b5e.firebaseapp.com",
-        databaseURL: "https://dinnerandamovie-87b5e.firebaseio.com",
-        projectId: "dinnerandamovie-87b5e",
-        storageBucket: "dinnerandamovie-87b5e.appspot.com",
-        messagingSenderId: "275851238648"
-    };
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyBby0z2SGf1_1jTbXXDrcT4LWz6JcVGJYw",
+                authDomain: "dinnerandamovie-87b5e.firebaseapp.com",
+                databaseURL: "https://dinnerandamovie-87b5e.firebaseio.com",
+                projectId: "dinnerandamovie-87b5e",
+                storageBucket: "dinnerandamovie-87b5e.appspot.com",
+                messagingSenderId: "275851238648"
+            };
+            // init Firebase
+            firebase.initializeApp(config);
 
-    firebase.initializeApp(config);
+            initApp = function () {
 
-    initApp = function () {
+                firebase.auth().onAuthStateChanged(function (user) {
 
-        // Initialize Firebase
+                    if (user) {
+                        // User is signed in.
 
-        //firebase.initializeApp(config);
-
-        firebase.auth().onAuthStateChanged(function (user) {
-
-            if (user) {
-                // User is signed in.
-
-                console.log('Signing in a user ' + moment(Date.now()).calendar());
-                addEventLogEntry(sessionStorage.getItem('email'), 'User SignIn', 'Signing in a user ');
-                var displayName = user.displayName;
-                var email = user.email;
-                var emailVerified = user.emailVerified;
-                var photoURL = user.photoURL;
-                var uid = user.uid;
-                var phoneNumber = user.phoneNumber;
-                var providerData = user.providerData;
+                        console.log('Signing in a user ' + moment(Date.now()).calendar());
+                        addEventLogEntry(sessionStorage.getItem('email'), 'User SignIn', 'Signing in a user ');
+                        var displayName = user.displayName;
+                        var email = user.email;
+                        var emailVerified = user.emailVerified;
+                        var photoURL = user.photoURL;
+                        var uid = user.uid;
+                        var phoneNumber = user.phoneNumber;
+                        var providerData = user.providerData;
 
 
-                user.getIdToken().then(function (accessToken) {
-                    console.log('Function get token');
-                    $("#welcomeMsg").text("Welcome " + displayName);
-                    sessionStorage.setItem('displayName', displayName)
-                    sessionStorage.setItem('email', email);
-                    sessionStorage.setItem('emailVerified', emailVerified);
-                    sessionStorage.setItem('photoURL', photoURL);
-                    sessionStorage.setItem('uid', uid);
-                    sessionStorage.setItem('phoneNumber', phoneNumber);
-                    sessionStorage.setItem('providerData', providerData);
-                });
-                $('#signin').hide();
-                $('#signout').show();
-            } else {
-                // User is signed out.
-                $("#welcomeMsg").text("");
-                $('#signout').hide();
-                $('#signin').show();
-            }
-        }, function (error) {
-            console.log(error);
-        });
-    };
-
-    window.addEventListener('load', function () {
-        initApp();
-
-        $("#btnModAddUser").click(function () {
-
-            console.log("---------Add User button clicked");
-            var fullName = $("#userDisplayName").val().trim();
-            var email = $("#userEmail").val().trim();
-            var role = $("#userRole option:selected").text();
-
-            addNewUser(fullName, email, role);
-        });
-    });
-
-    /**
-     * This functionality plugs a new user into the data base.
-     *
-     */
-    function addNewUser(fullName, email, role, preferences) {
-        console.log("---------Add User function");
-        //Prepare the user object
-        var newUser = {
-            userDisplayName: fullName,
-            userEmail: email,
-            userRole: role,
-            userActive: true,
-            entryDate: Date.now(),
-            lastChangeDate: Date.now(),
-            lastModifiedBy: sessionStorage.getItem('email'),
-            preferences: {
-                restaurantPrefs: {
-                    fastFood: false,
-                    casual: false,
-                    fineDining: false,
-                    cafe: false,
-                    foodTruck: false,
-                    buffet: false,
-                    indian: false,
-                    mexican: false
-                },
-                moviePrefs: {
-                    horror: false,
-                    comedy: false,
-                    animation: false,
-                    romance: false,
-                    action: false,
-                    documentary: false,
-                    foreign: false,
-                    family: false,
-                    ratings: {
-                        G: false,
-                        PG: false,
-                        PG13: false,
-                        R: false
+                        user.getIdToken().then(function (accessToken) {
+                            console.log('Function get token');
+                            $("#welcomeMsg").text("Welcome " + displayName);
+                            sessionStorage.setItem('displayName', displayName)
+                            sessionStorage.setItem('email', email);
+                            sessionStorage.setItem('emailVerified', emailVerified);
+                            sessionStorage.setItem('photoURL', photoURL);
+                            sessionStorage.setItem('uid', uid);
+                            sessionStorage.setItem('phoneNumber', phoneNumber);
+                            sessionStorage.setItem('providerData', providerData);
+                        });
+                        // swap buttons
+                        $('#signin').hide();
+                        $('#signout').show();
+                    } else {
+                        // User is signed out.
+                        $("#welcomeMsg").text("");
+                        $('#signout').hide();
+                        $('#signin').show();
                     }
-                },
-                searchRadius: 10
+                }, function (error) {
+                    console.log(error);
+                });
+            };
+
+            window.addEventListener('load', function () {
+                initApp();
+
+                $("#btnModAddUser").click(function () {
+
+                    console.log("---------Add User button clicked");
+                    var fullName = $("#userDisplayName").val().trim();
+                    var email = $("#userEmail").val().trim();
+                    var role = $("#userRole option:selected").text();
+
+                    addNewUser(fullName, email, role);
+                });
+            });
+
+            /**
+             * This functionality plugs a new user into the database.
+             *
+             */
+            function addNewUser(fullName, email, role, preferences) {
+                console.log("---------Add User function");
+                //Prepare the user object
+                var newUser = {
+                    userDisplayName: fullName,
+                    userEmail: email,
+                    userRole: role,
+                    userActive: true,
+                    entryDate: Date.now(),
+                    lastChangeDate: Date.now(),
+                    lastModifiedBy: sessionStorage.getItem('email'),
+                    preferences: {
+                        restaurantPrefs: {
+                            fastFood: false,
+                            casual: false,
+                            fineDining: false,
+                            cafe: false,
+                            foodTruck: false,
+                            buffet: false,
+                            indian: false,
+                            mexican: false
+                        },
+                        moviePrefs: {
+                            horror: false,
+                            comedy: false,
+                            animation: false,
+                            romance: false,
+                            action: false,
+                            documentary: false,
+                            foreign: false,
+                            family: false,
+                            ratings: {
+                                G: false,
+                                PG: false,
+                                PG13: false,
+                                R: false
+                            }
+                        },
+                        searchRadius: 10
+                    }
+                };
+
+                //Get a unique key
+                //Get a key for a new Post.
+                var newUserID = firebase.database().ref().child("users").push().key;
+
+                //Add the user
+                firebase.database().ref("users/" + newUserID).set(newUser);
+
             }
-        };
 
-        //Get a unique key
-        //Get a key for a new Post.
-        var newUserID = firebase.database().ref().child("users").push().key;
-
-        //Add the user
-        firebase.database().ref("users/" + newUserID).set(newUser);
-
-    }
-
-    var $lat = $("#latitude");
-    var $long = $("#longitude");
+            var $lat = $("#latitude");
+            var $long = $("#longitude");
 
             /**
              * This functionality returns the location of the user that has come to the website if they give you that permission
@@ -218,19 +241,11 @@
 
             getLocation();
 
-            console.log(sessionStorage.rndMovies);
-
-            function buildChoices(){
-              var choiceDiv = $('#choiceContiner');
-
-              for (var i=1; i <= 3; i++){
-                var strChoices = '<div class="row"><div class="col-sm-12 well well-lg"><h1>Combo ' + i + '</h1><div class="row"><div class="col-lg-6 col-sm-6"><div class="row" data-toggle="modal" data-target="#myModal"><div class="col-md-6"><img alt="dinner choice ' + i + '" src="http://via.placeholder.com/200x300"></div><div class="col-lg-6 col-md-6 text-center"><h3>Restaurant ' + i + '</h3><p>Lorem ipsum dolor sit amet</p></div></div></div><div class="col-lg-6 col-sm-6"><div class="row"><div class="col-lg-6 col-md-6 text-center"><h3>Movie Title ' + i + '</h3><p>Lorem ipsum dolor sit amet</p></div><div class="col-md-6"><img alt="movie choice ' + i + '" src="http://via.placeholder.com/200x300"></div></div></div></div><div class="row"><div class="col-md-12 text-center"><button type="button" class="btn btn-lg btn-success">Choose Combo ' + i + '</button></div></div></div></div>';
-
-                $('#choiceContiner').append(strChoices);
-              }
-
-            }
             buildChoices();
+
+
+
+            
         </script>
 	</body>
 </html>
