@@ -6,17 +6,7 @@ var rndMovies = [];
 
 $('#btnGoZipCode').on('click', function(event){
 	event.preventDefault();
-	//get4SquareVenues("movie%20theater");
-    //get4SquareVenues("restaurants");
-  	//getRecommendations();
   	console.log(getRecommendations(""));
-
-  	
-
-  	
-  	
-  	
-	//pullMovies();
   	
 });
 
