@@ -3,14 +3,13 @@ html {
 }
 
 body {
-	background: black;
+	background:#232426;
 	
 }
 
 .container {
 	color: white;
 }
-
 
 
 #searchRadius {
@@ -100,7 +99,7 @@ h2 {
 }
 
 .container-fluid {
-    background: black;
+    background: #232426;
 }
 
 
@@ -191,4 +190,6 @@ h2 {
 
 
 }
+
+well-lg h3{color:#232426;}
 

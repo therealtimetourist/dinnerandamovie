@@ -16,7 +16,7 @@
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#"><img src="assets/images/logo.png"></a>
+					<a class="navbar-brand" href="index.html"><img src="assets/images/logo.png"></a>
                     <span id="welcomeMsg"></span>
 				</div>
 			</div>
@@ -29,20 +29,20 @@
 		</div>
 		<!--end main choices-->
 
-		<!--modal-->
-		<div id="myModal" class="modal fade" role="dialog" style="display: none;">
+		<!--movie modal-->
+		<div id="myModal1" class="modal fade" role="dialog" style="display: none;">
 			<div class="modal-dialog modal-lg">
 				<!-- Modal content-->
 				<div class="modal-content">
 					<div class="modal-body">
 						<button type="button" class="close" data-dismiss="modal">×</button>
-						<h4 class="modal-title">Restaurant Details</h4>
+						<h4 class="modal-title">Movie Details</h4>
 						<div class="row">
 							<div class="col-lg-4 col-md-4 col-sm-12 text-center">
 								<img class="image-responsive" alt="dinner choice 1" src="http://via.placeholder.com/400x500">
 							</div>
 							<div class="col-lg-8 col-md-8 col-sm-12 text-center">
-								<h3>Restaurant 1</h3>
+								<h3>Movie 1</h3>
 								<p>
 									Lorem ipsum dolor sit amet
 								</p>
@@ -53,7 +53,33 @@
 				</div>
 			</div>
 		</div>
-		<!--end modal-->
+		<!--end movie modal-->
+
+        <!--restaurant modal-->
+        <div id="myModal2" class="modal fade" role="dialog" style="display: none;">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        <h4 class="modal-title">Restaurant Details</h4>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                                <img class="image-responsive" alt="dinner choice 1" src="http://via.placeholder.com/400x500">
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-12 text-center">
+                                <h3>Restaurant 1</h3>
+                                <p>
+                                    Lorem ipsum dolor sit amet
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <!--end restaurant modal-->
 		
 		<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -75,14 +101,10 @@
         storageBucket: "dinnerandamovie-87b5e.appspot.com",
         messagingSenderId: "275851238648"
     };
-
+    // init Firebase
     firebase.initializeApp(config);
 
     initApp = function () {
-
-        // Initialize Firebase
-
-        //firebase.initializeApp(config);
 
         firebase.auth().onAuthStateChanged(function (user) {
 
@@ -111,6 +133,7 @@
                     sessionStorage.setItem('phoneNumber', phoneNumber);
                     sessionStorage.setItem('providerData', providerData);
                 });
+                // swap buttons
                 $('#signin').hide();
                 $('#signout').show();
             } else {
@@ -139,7 +162,7 @@
     });
 
     /**
-     * This functionality plugs a new user into the data base.
+     * This functionality plugs a new user into the database.
      *
      */
     function addNewUser(fullName, email, role, preferences) {
@@ -217,20 +240,62 @@
             }
 
             getLocation();
+            var movieList = getRecommendations();
+            console.log(movieList);
 
-            console.log(sessionStorage.rndMovies);
+            buildChoices();
+
 
             function buildChoices(){
               var choiceDiv = $('#choiceContiner');
 
               for (var i=1; i <= 3; i++){
-                var strChoices = '<div class="row"><div class="col-sm-12 well well-lg"><h1>Combo ' + i + '</h1><div class="row"><div class="col-lg-6 col-sm-6"><div class="row" data-toggle="modal" data-target="#myModal"><div class="col-md-6"><img alt="dinner choice ' + i + '" src="http://via.placeholder.com/200x300"></div><div class="col-lg-6 col-md-6 text-center"><h3>Restaurant ' + i + '</h3><p>Lorem ipsum dolor sit amet</p></div></div></div><div class="col-lg-6 col-sm-6"><div class="row"><div class="col-lg-6 col-md-6 text-center"><h3>Movie Title ' + i + '</h3><p>Lorem ipsum dolor sit amet</p></div><div class="col-md-6"><img alt="movie choice ' + i + '" src="http://via.placeholder.com/200x300"></div></div></div></div><div class="row"><div class="col-md-12 text-center"><button type="button" class="btn btn-lg btn-success">Choose Combo ' + i + '</button></div></div></div></div>';
+                var movieName = movieList[i-1].movie.movieName;
+                var movieDesc = movieList[-1].movie.movieDesc;
+                var movieGenre = movieList[-1].movie.movieGenre;
+                var theatreName = movieList[-1].movie.theatreName;
+                var theatreAddress = movieList[-1].movie.location.address;
+                var theatreCity = movieList[-1].movie.location.city;
+                var theatreState = movieList[-1].movie.location.state;
+                var theatreZip = movieList[-1].movie.location.zip;
+
+                var restaurantName = movieList[-1].restaurant.restaurantName;
+                var restaurantCategory = movieList[-1].restaurant.category;
+                var restaurantAddress = movieList[-1].restaurant.location.address;
+                var restaurantCity = movieList[-1].restaurant.location.city;
+                var restaurantState = movieList[-1].restaurant.location.state;
+                var restaurantZip = movieList[-1].restaurant.location.zip;
+                var restaurantPrice = movieList[-1].restaurant.price;
+
+                var strChoices = '<div class="row">';
+                strChoices += '<div class="col-sm-12 well well-lg">';
+                strChoices += '<h1>Combo ' + i + '</h1>';
+                strChoices += '<div class="row">';
+                strChoices += '<div class="col-lg-6 col-sm-6">';
+                strChoices += '<div class="row" data-toggle="modal" data-target="#myModal1">';
+                strChoices += '<div class="col-md-6">';
+                strChoices += '<img alt="dinner choice ' + i + '" src="http://via.placeholder.com/200x300"></div>';
+                strChoices += '<div class="col-lg-6 col-md-6 text-center">';
+                strChoices += '<h3>Restaurant ' + i + '</h3>';
+                strChoices += '<p>Lorem ipsum dolor sit amet</p>';
+                strChoices += '</div></div></div>';
+                strChoices += '<div class="col-lg-6 col-sm-6"><div class="row">';
+                strChoices += '<div class="col-lg-6 col-md-6 text-center">';
+                strChoices += '<h3>' + movieName + '</h3>';
+                strChoices += '<p>Lorem ipsum dolor sit amet</p></div>';
+                strChoices += '<div class="col-md-6">';
+                strChoices += '<img alt="movie choice ' + i + '" src="http://via.placeholder.com/200x300">';
+                strChoices += '</div></div></div></div>';
+                strChoices += '<div class="row"><div class="col-md-12 text-center">';
+                strChoices += '<button type="button" class="btn btn-lg btn-success">';
+                strChoices += 'Choose Combo ' + i + '</button>';
+                strChoices += '</div></div></div></div>';
 
                 $('#choiceContiner').append(strChoices);
               }
 
             }
-            buildChoices();
+            
         </script>
 	</body>
 </html>
