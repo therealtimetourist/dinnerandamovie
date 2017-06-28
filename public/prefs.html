@@ -36,14 +36,67 @@
 <!--end navbar crap-->
 
 <div class="container">
-	<div class="row">
-  		<div class="col-lg-12">
-  			<h1>Preferences</h1>
-  			<h2>Movie Likes</h2>
-
-  			<h2>Food Likes</h2>
-  		</div>
-	</div>
-</div>
-
-</body>
+      <div class="row">
+        <div class="col-md-3">
+          <form id="preferences" method="get" action="">
+            <h1>Preferences:</h1>
+            <h2>Movie Likes</h2>
+            <div class="row">
+              <div class="col-sm-6">
+                <input type="checkbox" name="cat-movie1" value="horror"> Horror<br>
+                <input type="checkbox" name="cat-movie2" value="comedy"> Comedy<br>
+                <input type="checkbox" name="cat-movie3" value="animation"> Animation<br>
+                <input type="checkbox" name="cat-movie4" value="romance"> Romance 
+              </div>
+              <div class="col-sm-6">
+                <input type="checkbox" name="cat-movie5" value="action"> Action<br>
+                <input type="checkbox" name="cat-movie6" value="documentary"> Documentary<br>
+                <input type="checkbox" name="cat-movie7" value="foreign"> Foreign<br>
+                <input type="checkbox" name="cat-movie8" value="family"> Family
+              </div>
+            </div>
+            <h2>Food Likes</h2>
+            <div class="row">
+              <div class="col-sm-6">
+                <input type="checkbox" name="cat-food1" value="fastfood"> Fast Food<br>
+                <input type="checkbox" name="cat-food2" value="casual"> Casual<br>
+                <input type="checkbox" name="cat-food3" value="finedining"> Fine Dining<br>
+                <input type="checkbox" name="cat-food4" value="cafe"> Cafe 
+              </div>
+              <div class="col-sm-6">
+                <input type="checkbox" name="cat-food5" value="foodtruck"> Food Truck<br>
+                <input type="checkbox" name="cat-food6" value="buffet"> Buffet<br>
+                <input type="checkbox" name="cat-food7" value="indian"> Indian<br>
+                <input type="checkbox" name="cat-food8" value="mexican"> Mexican
+              </div>
+            </div>
+            <h2>Ratings</h2>
+            <div class="row">
+              <div class="col-sm-6">
+                <input type="checkbox" name="rating-g" value="ratedG"> G<br>
+                <input type="checkbox" name="rating-pg" value="ratedPG"> PG<br>
+                <input type="checkbox" name="rating-pg13" value="ratedPG13"> PG-13<br>
+                <input type="checkbox" name="rating-r" value="ratedR"> R
+              </div>
+            </div>
+            <h2>Search Radius</h2>
+            <div class="row">
+              <div class="col-sm-6">
+                <select id="searchRadius">
+                  <option value="10">10 miles</option>
+                  <option value="20">20 miles</option>
+                  <option value="30">30 miles</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <button class="btn btn-lg btn-primary" id="btnUpdatePrefs" type="submit">Update</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>  
