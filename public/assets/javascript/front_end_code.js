@@ -36,20 +36,21 @@ function buildChoices(){
       strChoices += '<div class="col-sm-12 well well-lg">';
       strChoices += '<h1>Combo ' + i + '</h1>';
       strChoices += '<div class="row">';
-      strChoices += '<div class="col-lg-6 col-sm-6">';
-      strChoices += '<div class="row" data-toggle="modal" data-target="#myModal1">';
-      strChoices += '<div class="col-md-6">';
+      strChoices += '<div class="col-sm-6 col-md-6">';
+      strChoices += '<div class="row" data-toggle="modal" data-target="#restaurantModal' + i + '">';
+      strChoices += '<div class="col-sm-6">';
       strChoices += '<img alt="dinner choice ' + i + '" src="http://via.placeholder.com/200x300"></div>';
-      strChoices += '<div class="col-lg-6 col-md-6 text-center">';
-      strChoices += '<h3>Restaurant ' + i + '</h3>';
+      strChoices += '<div class="col-sm-6 col-md-6 text-center">';
+      strChoices += '<h3>' + restaurantName + '</h3>';
       strChoices += '<p>Lorem ipsum dolor sit amet</p>';
       strChoices += '</div></div></div>';
-      strChoices += '<div class="col-lg-6 col-sm-6"><div class="row">';
-      strChoices += '<div class="col-lg-6 col-md-6 text-center">';
+      strChoices += '<div class="col-sm-6 col-md-6">';
+      strChoices += '<div class="row" data-toggle="modal" data-target="#movieModal' + i + '">';
+      strChoices += '<div class="col-sm-6">';
+      strChoices += '<img alt="dinner choice ' + i + '" src="http://via.placeholder.com/200x300"></div>';
+      strChoices += '<div class="col-sm-6 col-md-6 text-center">';
       strChoices += '<h3>' + movieName + '</h3>';
-      strChoices += '<p>Lorem ipsum dolor sit amet</p></div>';
-      strChoices += '<div class="col-md-6">';
-      strChoices += '<img alt="movie choice ' + i + '" src="http://via.placeholder.com/200x300">';
+      strChoices += '<p>Lorem ipsum dolor sit amet</p>';
       strChoices += '</div></div></div></div>';
       strChoices += '<div class="row"><div class="col-md-12 text-center">';
       strChoices += '<button type="button" class="btn btn-lg btn-success">';
@@ -58,4 +59,4 @@ function buildChoices(){
 
       $('#choiceContiner').append(strChoices);
   }
-  }
+}
