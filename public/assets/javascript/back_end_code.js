@@ -298,7 +298,7 @@ function pullMovies() {
         response[0].genres);
     for (var i = 0; i < response.length; i++) {
       var movie = {
-        theaterName: response[i].title,
+        theaterName: response[i].showtimes[0].theater.name,
         location: {
           address: '',
           city: '',
@@ -306,9 +306,9 @@ function pullMovies() {
           zip: '',
           distance: '',
         },
-        movieName: '',
-        movieDesc: '',
-        movieGenre: '',
+        movieName: response[i].title,
+        movieDesc: response[i].longDescription,
+        movieGenre: response[i].genres[0],
       };
 
       movies.push(movie);
@@ -357,9 +357,6 @@ var recommendation =
  * @return {array} recommendations
  */
 function getRecommendations(userPref) {
-
-
-
 
   //TODO Add functionality to select three of the closest movie theaters
 
