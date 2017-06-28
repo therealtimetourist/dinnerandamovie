@@ -16,54 +16,16 @@
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#">EatDis-WatchDat</a>
+					<a class="navbar-brand" href="#"><img src="assets/images/logo.png"></a>
+                    <span id="welcomeMsg"></span>
 				</div>
 			</div>
 		</nav>
 		<!--end navbar-->
-
+        <br>
 		<!--main choices-->
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 well well-lg">
-					<h1>Combo 1</h1>
-					<div class="row">
-						<div class="col-lg-6 col-sm-6">
-							<div class="row" data-toggle="modal" data-target="#myModal">
-								<div class="col-md-6">
-									<img alt="dinner choice 1" src="http://via.placeholder.com/200x300">
-								</div>
-								<div class="col-lg-6 col-md-6 text-center">
-									<h3>Restaurant 1</h3>
-									<p>
-										Lorem ipsum dolor sit amet
-									</p>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-6 col-sm-6">
-							<div class="row">
-								<div class="col-lg-6 col-md-6 text-center">
-									<h3>Movie Title 1</h3>
-									<p>
-										Lorem ipsum dolor sit amet
-									</p>
-								</div>
-								<div class="col-md-6">
-									<img alt="movie choice 1" src="http://via.placeholder.com/200x300">
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-12 text-center">
-							<button type="button" class="btn btn-lg btn-success">Choose Combo 1</button>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div id="choiceContiner" class="container">
+			
 		</div>
 		<!--end main choices-->
 
@@ -93,12 +55,182 @@
 		</div>
 		<!--end modal-->
 		
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+		        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		        crossorigin="anonymous"></script>
+		<script src="assets/javascript/moment.js"></script>        
+		<script src="assets/javascript/back_end_code.js"></script>
+		<script src="assets/javascript/front_end_code.js"></script>
 
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-		
-		<script type="text/javascript" src="assets/javascript/front_end_code.js"></script>
-		<script type="text/javascript" src="assets/javascript/back_end_code.js"></script>
-	
+		<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBby0z2SGf1_1jTbXXDrcT4LWz6JcVGJYw",
+        authDomain: "dinnerandamovie-87b5e.firebaseapp.com",
+        databaseURL: "https://dinnerandamovie-87b5e.firebaseio.com",
+        projectId: "dinnerandamovie-87b5e",
+        storageBucket: "dinnerandamovie-87b5e.appspot.com",
+        messagingSenderId: "275851238648"
+    };
+
+    firebase.initializeApp(config);
+
+    initApp = function () {
+
+        // Initialize Firebase
+
+        //firebase.initializeApp(config);
+
+        firebase.auth().onAuthStateChanged(function (user) {
+
+            if (user) {
+                // User is signed in.
+
+                console.log('Signing in a user ' + moment(Date.now()).calendar());
+                addEventLogEntry(sessionStorage.getItem('email'), 'User SignIn', 'Signing in a user ');
+                var displayName = user.displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var uid = user.uid;
+                var phoneNumber = user.phoneNumber;
+                var providerData = user.providerData;
+
+
+                user.getIdToken().then(function (accessToken) {
+                    console.log('Function get token');
+                    $("#welcomeMsg").text("Welcome " + displayName);
+                    sessionStorage.setItem('displayName', displayName)
+                    sessionStorage.setItem('email', email);
+                    sessionStorage.setItem('emailVerified', emailVerified);
+                    sessionStorage.setItem('photoURL', photoURL);
+                    sessionStorage.setItem('uid', uid);
+                    sessionStorage.setItem('phoneNumber', phoneNumber);
+                    sessionStorage.setItem('providerData', providerData);
+                });
+                $('#signin').hide();
+                $('#signout').show();
+            } else {
+                // User is signed out.
+                $("#welcomeMsg").text("");
+                $('#signout').hide();
+                $('#signin').show();
+            }
+        }, function (error) {
+            console.log(error);
+        });
+    };
+
+    window.addEventListener('load', function () {
+        initApp();
+
+        $("#btnModAddUser").click(function () {
+
+            console.log("---------Add User button clicked");
+            var fullName = $("#userDisplayName").val().trim();
+            var email = $("#userEmail").val().trim();
+            var role = $("#userRole option:selected").text();
+
+            addNewUser(fullName, email, role);
+        });
+    });
+
+    /**
+     * This functionality plugs a new user into the data base.
+     *
+     */
+    function addNewUser(fullName, email, role, preferences) {
+        console.log("---------Add User function");
+        //Prepare the user object
+        var newUser = {
+            userDisplayName: fullName,
+            userEmail: email,
+            userRole: role,
+            userActive: true,
+            entryDate: Date.now(),
+            lastChangeDate: Date.now(),
+            lastModifiedBy: sessionStorage.getItem('email'),
+            preferences: {
+                restaurantPrefs: {
+                    fastFood: false,
+                    casual: false,
+                    fineDining: false,
+                    cafe: false,
+                    foodTruck: false,
+                    buffet: false,
+                    indian: false,
+                    mexican: false
+                },
+                moviePrefs: {
+                    horror: false,
+                    comedy: false,
+                    animation: false,
+                    romance: false,
+                    action: false,
+                    documentary: false,
+                    foreign: false,
+                    family: false,
+                    ratings: {
+                        G: false,
+                        PG: false,
+                        PG13: false,
+                        R: false
+                    }
+                },
+                searchRadius: 10
+            }
+        };
+
+        //Get a unique key
+        //Get a key for a new Post.
+        var newUserID = firebase.database().ref().child("users").push().key;
+
+        //Add the user
+        firebase.database().ref("users/" + newUserID).set(newUser);
+
+    }
+
+    var $lat = $("#latitude");
+    var $long = $("#longitude");
+
+            /**
+             * This functionality returns the location of the user that has come to the website if they give you that permission
+             */
+            function getLocation() {
+                console.log('This is the get location function ')
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    $lat.text("Geolocation is not supported by this browser.");
+                }
+            }
+
+            function showPosition(position) {
+                console.log('Current Position is ' + position.coords.latitude + ", " + position.coords.longitude)
+                $lat.text("Latitude: " + position.coords.latitude);
+                $long.text("Longitude: " + position.coords.longitude);
+                sessionStorage.setItem("currentLat", position.coords.latitude);
+                sessionStorage.setItem("currentLong", position.coords.longitude);
+            }
+
+            getLocation();
+
+            console.log(sessionStorage.rndMovies);
+
+            function buildChoices(){
+              var choiceDiv = $('#choiceContiner');
+
+              for (var i=1; i <= 3; i++){
+                var strChoices = '<div class="row"><div class="col-sm-12 well well-lg"><h1>Combo ' + i + '</h1><div class="row"><div class="col-lg-6 col-sm-6"><div class="row" data-toggle="modal" data-target="#myModal"><div class="col-md-6"><img alt="dinner choice ' + i + '" src="http://via.placeholder.com/200x300"></div><div class="col-lg-6 col-md-6 text-center"><h3>Restaurant ' + i + '</h3><p>Lorem ipsum dolor sit amet</p></div></div></div><div class="col-lg-6 col-sm-6"><div class="row"><div class="col-lg-6 col-md-6 text-center"><h3>Movie Title ' + i + '</h3><p>Lorem ipsum dolor sit amet</p></div><div class="col-md-6"><img alt="movie choice ' + i + '" src="http://via.placeholder.com/200x300"></div></div></div></div><div class="row"><div class="col-md-12 text-center"><button type="button" class="btn btn-lg btn-success">Choose Combo ' + i + '</button></div></div></div></div>';
+
+                $('#choiceContiner').append(strChoices);
+              }
+
+            }
+            buildChoices();
+        </script>
 	</body>
 </html>

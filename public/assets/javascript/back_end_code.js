@@ -111,61 +111,7 @@ $(document).ready(function() {
 
   });
 
-  /**
-   * This function takes a set of Query Terms and returns venues from the 4Square Service
-   * @param queryTerms
-   * @returns {Array}
-   */
-  function get4SquareVenues(queryTerms) {
-    //Connect to FourSquare and run the search based on the paramenters set.
-    var url = '';
-    var ll = sessionStorage.getItem('currentLat') + '%2C%20' +
-        sessionStorage.getItem('currentLong');
-    var limit = 10;
-    url = 'https://api.foursquare.com/v2/venues/explore?v=20131016';
-    url += '&client_id=' + 'XUYA5NQ3ME2D0SSMNKUA5ALL4I0DBWG13M42U1PQII5PBWDH';
-    url += '&client_secret=' +
-        'BNWEGFBMCZW0QA5VA2E1HZ20NG1FT4D0OEBBVQIRICFGTHTY';
-    url += '&ll=' + ll;
-    url += '&limit=' + limit;
-    url += '&query=' + queryTerms;
-    url += '&venuePhotos=1';
-    url += '&radius=' + '17600';
-
-    //url = "https://api.foursquare.com/v2/venues/search?v=20161016&ll=41.878114%2C%20-87.629798&query=coffee&intent=checkin&client_id=XUYA5NQ3ME2D0SSMNKUA5ALL4I0DBWG13M42U1PQII5PBWDH&client_secret=BNWEGFBMCZW0QA5VA2E1HZ20NG1FT4D0OEBBVQIRICFGTHTY";
-    console.log(url);
-
-    addEventLogEntry(sessionStorage.getItem('email'), '4SquareQuery', url);
-
-    $.ajax({
-      url: url,
-      method: 'GET',
-    }).done(function(response) {
-
-      addEventLogEntry(sessionStorage.getItem('email'), '4SquareQueryResponse',
-          response.response);
-
-      console.log('This is the response object: ');
-      console.log(response.response);
-      var items = response.response.groups[0].items;
-      console.log(' This is the list of items from 4Square ');
-      console.log(items);
-
-      if (queryTerms == 'movie%20theater') {
-        for (var i = 0; i < items.length; i++) {
-          addTheaterRow(items[i].venue);
-        }
-      }
-
-      if (queryTerms == 'restaurants') {
-        for (var i = 0; i < items.length; i++) {
-          addRestaurantRow(items[i].venue);
-        }
-      }
-
-    });
-
-  }
+  
 
   /**
    * This function takes an individual venue item and adds it to a table row object
@@ -312,23 +258,23 @@ function getRecommendations(userPref) {
         restaurant: {
           restaurantName: 'Tiki Taco',
           location: {
-            address: '',
-            city: '',
-            state: '',
-            zip: '',
-            distance: '',
+            address: '1234 Any Street',
+            city: 'Ocoee',
+            state: 'FL',
+            zip: '32835',
+            distance: '.25',
           },
-          category: '',
-          price: '',
+          category: 'Italian',
+          price: '2',
         },
         movie: {
           theaterName: 'Jo Mamas House',
           location: {
-            address: '',
-            city: '',
-            state: '',
-            zip: '',
-            distance: '',
+            address: '65 Twilight Road',
+            city: 'Ocoee',
+            state: 'FL',
+            zip: '32835',
+            distance: '.50',
           },
           movieName: '',
           movieDesc: '',
@@ -346,5 +292,61 @@ function getRecommendations(userPref) {
   return recommendations;
 
 }
+
+/**
+   * This function takes a set of Query Terms and returns venues from the 4Square Service
+   * @param queryTerms
+   * @returns {Array}
+   */
+  function get4SquareVenues(queryTerms) {
+    //Connect to FourSquare and run the search based on the paramenters set.
+    var url = '';
+    var ll = sessionStorage.getItem('currentLat') + '%2C%20' +
+        sessionStorage.getItem('currentLong');
+    var limit = 10;
+    url = 'https://api.foursquare.com/v2/venues/explore?v=20131016';
+    url += '&client_id=' + 'XUYA5NQ3ME2D0SSMNKUA5ALL4I0DBWG13M42U1PQII5PBWDH';
+    url += '&client_secret=' +
+        'BNWEGFBMCZW0QA5VA2E1HZ20NG1FT4D0OEBBVQIRICFGTHTY';
+    url += '&ll=' + ll;
+    url += '&limit=' + limit;
+    url += '&query=' + queryTerms;
+    url += '&venuePhotos=1';
+    url += '&radius=' + '17600';
+
+    //url = "https://api.foursquare.com/v2/venues/search?v=20161016&ll=41.878114%2C%20-87.629798&query=coffee&intent=checkin&client_id=XUYA5NQ3ME2D0SSMNKUA5ALL4I0DBWG13M42U1PQII5PBWDH&client_secret=BNWEGFBMCZW0QA5VA2E1HZ20NG1FT4D0OEBBVQIRICFGTHTY";
+    console.log(url);
+
+    addEventLogEntry(sessionStorage.getItem('email'), '4SquareQuery', url);
+
+    $.ajax({
+      url: url,
+      method: 'GET',
+    }).done(function(response) {
+
+      addEventLogEntry(sessionStorage.getItem('email'), '4SquareQueryResponse',
+          response.response);
+
+      console.log('This is the response object: ');
+      console.log(response.response);
+      var items = response.response.groups[0].items;
+      console.log(' This is the list of items from 4Square ');
+      console.log(items);
+
+      if (queryTerms == 'movie%20theater') {
+        for (var i = 0; i < items.length; i++) {
+          addTheaterRow(items[i].venue);
+        }
+      }
+
+      if (queryTerms == 'restaurants') {
+        for (var i = 0; i < items.length; i++) {
+          addRestaurantRow(items[i].venue);
+        }
+      }
+
+    });
+
+  }
 
 
