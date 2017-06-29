@@ -1,7 +1,4 @@
-
 var sessionUser = sessionStorage.getItem('email');
-
-
 
 $(document).ready(function() {
 
@@ -17,7 +14,7 @@ $(document).ready(function() {
     messagingSenderId: '679714174028',
   };
 
-  firebase.initializeApp( config );
+  //firebase.initializeApp(config);
 
   // Get a reference to the database service
 
@@ -272,9 +269,6 @@ function addEventLogEntry(userEmail, eventType, eventText) {
     longitude: sessionStorage.getItem('currentLong'),
   };
 
- 
-
-
   //Get a unique key
   //Get a key for a new Post.
   var newEventID = firebase.database().ref().child('events').push().key;
@@ -295,9 +289,14 @@ function pullMovies() {
   var m = moment().get('date');
   var date = moment().format('YYYY-MM-DD');
 
+  var currentLat = sessionStorage.getItem('currentLat');
+  var currentLong = sessionStorage.getItem('currentLong');
+
 //need to pass input zip code to this var
-  var zipCode = '';
-  var queryURL = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=' + date + '&lat=' + currentLat + '&lng=' + currentLong + '&radius=10&api_key=52hkegdyrb7rrj8eraadpwg4';
+  //var zipCode = '';
+  var queryURL = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=' +
+      date + '&lat=' + currentLat + '&lng=' + currentLong +
+      '&radius=10&api_key=52hkegdyrb7rrj8eraadpwg4';
 
   $.ajax({
     url: queryURL,
@@ -308,7 +307,7 @@ function pullMovies() {
         response[0].genres);
     for (var i = 0; i < response.length; i++) {
       var movie = {
-        theaterName: response[i].title,
+        theaterName: response[i].showtimes[0].theater.name,
         location: {
           address: '',
           city: '',
@@ -316,9 +315,9 @@ function pullMovies() {
           zip: '',
           distance: '',
         },
-        movieName: '',
-        movieDesc: '',
-        movieGenre: '',
+        movieName: response[i].title,
+        movieDesc: response[i].longDescription,
+        movieGenre: response[i].genres[0],
       };
 
       movies.push(movie);
@@ -368,8 +367,9 @@ var recommendation =
  */
 function getRecommendations(userPref) {
 
-
-
+  get4SquareVenues('movie%20theater');
+  get4SquareVenues('restaurants');
+  pullMovies();
 
   //TODO Add functionality to select three of the closest movie theaters
 
