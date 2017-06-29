@@ -63,15 +63,15 @@ function buildChoices(){
     strChoices    += '                </div>';
     strChoices    += '            </div>';
     strChoices    += '        </div>';
-    strChoices    += '        <div class="row">';
-    strChoices    += '            <div class="col-sm-12 text-center">';
-    strChoices    += '                <button type="button" class="btn btn-lg btn-success">';
-    strChoices    += '                    Choose Combo ' + i;
-    strChoices    += '                </button>';
-    strChoices    += '            </div>';
-    strChoices    += '        </div>';
-    strChoices    += '    </div>';
-    strChoices    += '</div>';
+    //strChoices    += '        <div class="row">';
+    //strChoices    += '            <div class="col-sm-12 text-center">';
+    //strChoices    += '                <button type="button" class="btn btn-lg btn-success">';
+    //strChoices    += '                    Choose Combo ' + i;
+    //strChoices    += '                </button>';
+    //strChoices    += '            </div>';
+    //strChoices    += '        </div>';
+    //strChoices    += '    </div>';
+    //strChoices    += '</div>';
 
     // write the html string for the modal window details
     var strMovieChoice = '';
