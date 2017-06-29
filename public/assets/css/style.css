@@ -1,16 +1,12 @@
-html {
-	
-}
+html {}
 
 body {
-	background: black;
-	
+	background:#000;
 }
 
 .container {
-	color: white;
+	color: #fff;
 }
-
 
 
 #searchRadius {
@@ -35,24 +31,22 @@ body {
 	width: 100%;
 	height: 600px;
 	color: white;
-	
-	
 }
 
-	#movieChosen {
+#movieChosen {
 
-		margin: 20px;	
-		height: 450px;
-		width: 350px;
-		border: 2px solid purple;
-	}
+	margin: 20px;	
+	height: 450px;
+	width: 350px;
+	border: 2px solid purple;
+}
 
-	#dinnerChosen {
-		margin: 20px;
-		height: 450px;
-		width: 350px;
-		border: 2px solid purple;
-	}
+#dinnerChosen {
+	margin: 20px;
+	height: 450px;
+	width: 350px;
+	border: 2px solid purple;
+}
 
 
 .summary {
@@ -72,11 +66,10 @@ body {
 	margin: auto;
 }
 
-	#name-input {
-		text-align: center;
-	
-}
+#name-input {
+	text-align: center;
 
+}
 
 
 h2 {
@@ -100,7 +93,7 @@ h2 {
 }
 
 .container-fluid {
-    background: black;
+    background: #232426;
 }
 
 
@@ -120,9 +113,6 @@ h2 {
 		height: 400px;
 
 	}
-
-
-
 
 	.navbar-toggle {
 		display: block;
@@ -185,10 +175,13 @@ h2 {
 	#dinnerChosen {
 		width: 170px;
 		height: 240px;
-
 	}
 
+}
 
+well-lg h3{color:#232426;}
 
+#choiceContiner.container{
+	color:#000;
 }
 
