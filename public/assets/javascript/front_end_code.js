@@ -12,9 +12,12 @@ $('#btnGoZipCode').on('click', function(event){
 function buildChoices(){
   var movieList = getRecommendations();
   console.log(movieList);
-  var choiceDiv = $('#choiceContiner');
+  var choiceDiv = $('#choiceContiner');   // main choices
 
   for (var i=1; i < 4; i++){
+    var restDiv        = $('#rest' + i);  // specific restaurant modal
+    var movDiv         = $('#mov' + i);   // specific movie modal
+
     var movieName      = movieList[i-1].movie.movieName;
     var movieDesc      = movieList[i-1].movie.movieDesc;
     var movieGenre     = movieList[i-1].movie.movieGenre;
@@ -31,7 +34,7 @@ function buildChoices(){
     var restaurantState    = movieList[i-1].restaurant.location.state;
     var restaurantZip      = movieList[i-1].restaurant.location.zip;
     var restaurantPrice    = movieList[i-1].restaurant.price;
-
+    // write the html string for each choice
     var strChoices = '<div class="row">';
     strChoices    += '    <div class="col-lg-12 well well-lg text-success">';
     strChoices    += '        <h1>Combo ' + i + '</h1>';
@@ -70,6 +73,23 @@ function buildChoices(){
     strChoices    += '    </div>';
     strChoices    += '</div>';
 
+    // write the html string for the modal window details
+    var strMovieChoice = '';
+
+    var strRestaurantChoice = '<h3>' + restaurantName + '</h3>';
+        strRestaurantChoice += '<p>' + restaurantAddress;
+        strRestaurantChoice += '<br>' + restaurantCity + ', ';
+        strRestaurantChoice += restaurantState + ' ' + restaurantZip + '</p>';
+
+    var strMovieChoice = '<h3>' + movieName + '</h3>';
+        strMovieChoice += '<h4>' + theaterName + '</h4>';
+        strMovieChoice += '<p>' + theaterAddress;
+        strMovieChoice += '<br>' + theaterCity + ', ';
+        strMovieChoice += theaterState + ' ' + theaterZip + '</p>';    
+
     choiceDiv.append(strChoices);
+    restDiv.html(strRestaurantChoice);
+    movDiv.html(strMovieChoice);
+
   }
 }
