@@ -6,6 +6,7 @@ body {
 
 .container {
 	color: #fff;
+	background-color: #000;
 }
 
 
@@ -68,7 +69,6 @@ body {
 
 #name-input {
 	text-align: center;
-
 }
 
 
@@ -87,7 +87,6 @@ h2 {
 
 /*style nav brand color and font*/
 .navbar-brand {
-	
 	font-family: georgia;
 	font-size: 32px;
 }
