@@ -5,7 +5,7 @@ body {
 }
 
 .container {
-	color: white;
+	color: #fff;
 }
 
 
@@ -180,4 +180,8 @@ h2 {
 }
 
 well-lg h3{color:#232426;}
+
+#choiceContiner.container{
+	color:#000;
+}
 
