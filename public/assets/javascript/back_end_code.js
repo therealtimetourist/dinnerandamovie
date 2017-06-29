@@ -1,4 +1,10 @@
 var sessionUser = sessionStorage.getItem('email');
+var movies = [];
+var restaurants = [];
+var theaters = [];
+var recommendations = [];
+var recommendation = {};
+
 
 $(document).ready(function() {
 
@@ -105,9 +111,11 @@ $(document).ready(function() {
 
   $('#btnRefreshRestaurants').click(function() {
 
-    get4SquareVenues('movie%20theater');
-    get4SquareVenues('restaurants');
-    pullMovies();
+    getRecommendations();
+
+    //get4SquareVenues('movie%20theater');
+    //get4SquareVenues('restaurants');
+    //pullMovies();
 
   });
 
@@ -139,7 +147,7 @@ function get4SquareVenues(queryTerms) {
 
   addEventLogEntry(sessionStorage.getItem('email'), '4SquareQuery', url);
 
-  $.ajax({
+  return $.ajax({
     url: url,
     method: 'GET',
   }).done(function(response) {
@@ -160,6 +168,7 @@ function get4SquareVenues(queryTerms) {
     }
 
     if (queryTerms == 'restaurants') {
+      restaurants = [];
       for (var i = 0; i < items.length; i++) {
         addRestaurantRow(items[i].venue);
       }
@@ -209,6 +218,20 @@ function addTheaterRow(venue) {
  */
 function addRestaurantRow(venue) {
 
+  var place = {
+    restaurantName: ' ',
+    location: {
+      address: '',
+      city: '',
+      state: 'FL',
+      zip: '',
+      distance: '',
+    },
+    category: '',
+    price: '',
+    rating: '',
+  };
+
   var $newRow = $('<tr>');
   var $newCol1 = $('<td>');
   var $newCol2 = $('<td>');
@@ -221,12 +244,20 @@ function addRestaurantRow(venue) {
   //Column layout tied to the theater table
 
   $newCol1.text(venue.name);
+  place.restaurantName = venue.name;
   $newCol2.text(venue.location.address);
+  place.location.address = venue.location.address;
   $newCol3.text(venue.location.city);
+  place.location.city = venue.location.city;
   $newCol4.text(venue.categories[0].name);
+  place.category = venue.categories[0].name;
   $newCol5.text(venue.location.distance);
+  place.location.distance = venue.location.distance;
   $newCol6.text(venue.rating);  //rating
+  place.rating = venue.rating;
+
   $newCol7.text(venue.price.tier);  //price
+  place.price = venue.price.tier;
 
   $newRow.append($newCol1);
   $newRow.append($newCol2);
@@ -237,6 +268,7 @@ function addRestaurantRow(venue) {
   $newRow.append($newCol7);
 
   $('#restaurantTable').append($newRow);
+  restaurants.push(place);
 
 }
 
@@ -298,16 +330,16 @@ function pullMovies() {
       date + '&lat=' + currentLat + '&lng=' + currentLong +
       '&radius=10&api_key=52hkegdyrb7rrj8eraadpwg4';
 
-  $.ajax({
+  return $.ajax({
     url: queryURL,
     method: 'GET',
   }).done(function(response) {
     console.log(response);
-    console.log(response[0].title + '  ' + response[0].longDescription + '  ' +
-        response[0].genres);
+    //console.log(response[i].showtimes[0].theater.name + " "  + response[0].title + '  ' + response[0].longDescription + '  ' + response[0].genres);
     for (var i = 0; i < response.length; i++) {
+
       var movie = {
-        theaterName: response[i].showtimes[0].theater.name,
+        showtime: response[i].showtimes[0],
         location: {
           address: '',
           city: '',
@@ -317,48 +349,15 @@ function pullMovies() {
         },
         movieName: response[i].title,
         movieDesc: response[i].longDescription,
-        movieGenre: response[i].genres[0],
+        movieGenre: response[i].genres,
       };
 
       movies.push(movie);
     }
+    console.log('This is the list of movies');
     console.log(movies);
   });
 }
-;
-
-var movies = [];
-var restaurants = [];
-var recommendations = [];
-var recommendation =
-    {
-      restaurant: {
-        restaurantName: 'Tiki Taco',
-        location: {
-          address: '12234 Any Street',
-          city: 'Ocoee',
-          state: 'FL',
-          zip: '34761',
-          distance: '.5 miles',
-        },
-        category: 'Sushi',
-        price: '3',
-      },
-      movie: {
-        theaterName: 'Jo Mamas House',
-        location: {
-          address: '65 Butter Ave.',
-          city: 'Ocoee',
-          state: 'FL',
-          zip: '34761',
-          distance: '1.0 miles',
-        },
-        movieName: 'Transformers: The Last Battle',
-        movieDesc: 'Theyre more than meets the eye',
-        movieGenre: 'Action',
-
-      },
-    };
 
 /**
  * This function returns an array of three recommendation objects back to the caller
@@ -366,21 +365,23 @@ var recommendation =
  * @return {array} recommendations
  */
 function getRecommendations(userPref) {
+  recommendations = [];
+  $.when(
+      get4SquareVenues('movie%20theater'),
+      get4SquareVenues('restaurants'),
+      pullMovies()
+  ).done(function() {
+    for (var i = 0; i < 3; i++) {
+      var newRec = recommendation;
+      newRec.movie = movies[i];
+      newRec.restaurant = restaurants[i];
+      recommendations.push(newRec);
+    }
 
-  get4SquareVenues('movie%20theater');
-  get4SquareVenues('restaurants');
-  pullMovies();
-
-  //TODO Add functionality to select three of the closest movie theaters
-
-  //TODO Add functionality to select three of the closest restaurants
-  for (var i = 0; i < 3; i++) {
-    var newRec = recommendation;
-    newRec.movie.movieName = ' This is movie #' + i;
-    recommendations.push(newRec);
-  }
-
-  return recommendations;
+    console.log('-----------This is the RECOMMENDATION OBJECT---------------');
+    console.log(recommendations);
+    return recommendations;
+  });
 
 }
 
