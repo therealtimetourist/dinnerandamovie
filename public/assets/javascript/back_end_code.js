@@ -303,11 +303,11 @@ function pullMovies() {
     method: 'GET',
   }).done(function(response) {
     console.log(response);
-    console.log(response[0].title + '  ' + response[0].longDescription + '  ' +
-        response[0].genres);
+    //console.log(response[i].showtimes[0].theater.name + " "  + response[0].title + '  ' + response[0].longDescription + '  ' + response[0].genres);
     for (var i = 0; i < response.length; i++) {
+
       var movie = {
-        theaterName: response[i].showtimes[0].theater.name,
+        showtime: response[i].showtimes[0],
         location: {
           address: '',
           city: '',
@@ -322,6 +322,7 @@ function pullMovies() {
 
       movies.push(movie);
     }
+    console.log('This is the list of movies');
     console.log(movies);
   });
 }
@@ -376,7 +377,7 @@ function getRecommendations(userPref) {
   //TODO Add functionality to select three of the closest restaurants
   for (var i = 0; i < 3; i++) {
     var newRec = recommendation;
-    newRec.movie.movieName = ' This is movie #' + i;
+    newRec.movie[i] = ' This is movie #' + i;
     recommendations.push(newRec);
   }
 
