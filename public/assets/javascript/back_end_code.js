@@ -8,23 +8,6 @@ var recommendation = {};
 
 $(document).ready(function() {
 
-
-  // Initialize Firebase
-
-  var config = {
-    apiKey: 'AIzaSyDwvX6WztC5DIZ3fZaWG7O8z86qBrIndyk',
-    authDomain: 'te2timekeeper.firebaseapp.com',
-    databaseURL: 'https://te2timekeeper.firebaseio.com',
-    projectId: 'te2timekeeper',
-    storageBucket: 'te2timekeeper.appspot.com',
-    messagingSenderId: '679714174028',
-  };
-
-  //firebase.initializeApp(config);
-
-  // Get a reference to the database service
-
-  // Get a reference to the database service
   var users = firebase.database().ref('users/');
 
   users.orderByChild('userDisplayName').on('value', function(snapshot) {
@@ -97,7 +80,7 @@ $(document).ready(function() {
     //Get the app profile from the user that just logged in.
   }
 
-  $('#signout').click(function() {
+  $('#signOut').click(function() {
     console.log('Signing out');
     firebase.auth().signOut().then(function() {
       $('#user-name').
@@ -256,8 +239,14 @@ function addRestaurantRow(venue) {
   $newCol6.text(venue.rating);  //rating
   place.rating = venue.rating;
 
-  $newCol7.text(venue.price.tier);  //price
-  place.price = venue.price.tier;
+  if (venue.price.tier) {
+    $newCol7.text(venue.price.tier);  //price
+    place.price = venue.price.tier;
+  } else {
+    $newCol7.text('2');  //price
+    place.price = '2';
+  }
+
 
   $newRow.append($newCol1);
   $newRow.append($newCol2);

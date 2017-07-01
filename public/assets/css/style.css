@@ -2,6 +2,8 @@ html {}
 
 body {
 	background:#000;
+    background: url(../images/couplemovie.jpg) no-repeat;
+    background-size: cover;
 }
 
 .container {
@@ -13,10 +15,37 @@ body {
 	color: black;
 }
 
+#zipCode {
+    color: white;
+}
+
+.topBar {
+    width: 100%;
+    background-color: transparent;
+    margin-bottom: 45px;
+}
+
+.mainContent {
+    background: rgba(136, 136, 136, .75);
+    color: floralwhite;
+    margin-left: 20px;
+    margin-bottom: 5px;
+
+    padding: 5px;
+    border-radius: 9px;
+}
+
+#settingsSpan {
+    color: white;
+    float: right;
+    position: absolute;
+    top: 10px;
+    right: 15px
+}
 
 .battleArea {
-	background: url(../images/couplemovie.jpg) no-repeat center;
-	margin: auto;
+
+    margin: auto;
 	color: white;
 	width: 100%;
 	padding: 320px 20px 20px 20px;

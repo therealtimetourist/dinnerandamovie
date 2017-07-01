@@ -1,230 +1,291 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>EatDisWatchDat | Welcome</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <title>EatDisWatchDat | Welcome</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/MDBFree/css/mdb.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/font-awesome-4.7.0/css/font-awesome.css">
 
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    </head>
 
-    <body>
-        <!--nav bar-->
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img src="assets/images/logo.png"></a>
-                <span id="welcomeMsg"></span>
-                <a class="navbar-right" href="prefs.html"><img src="assets/images/settings.png" alt="preferences" id="settings-button"></a>
-            </div>
-        </nav>
-        <!--end nav bar-->
+</head>
 
-        <div class="content">
-            <div class="battleArea img-responsive text-center">
-                <h1>How about Dinner and a Movie?</h1>
+<body>
+<div class="topBar">
+    <span id="logoSpan"><img class="img-responsive" src="assets/images/logo.png" id="logo"></span>
+    <div class="btn-group " id="settingsSpan">
+        <a class="btn btn-primary" href="#"><i class="fa fa-user fa-fw"></i> User</a>
+        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+            <span class="fa fa-caret-down" title="Toggle dropdown menu"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="#" data-toggle="modal" data-target="#addUserModal">
+                <i class="fa fa-pencil fa-fw"></i> Edit Settings</a></li>
+            <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> View History</a></li>
+            <li class="divider"></li>
+            <li id="signIn"><a href="signin.html"><i class="fa fa-unlock"></i> Sign In</a></li>
+            <li id="signOut"><a href="#"><i class="fa fa-lock"></i> Sign Out</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mainContent text-center">
+                <h4>How about Dinner and a Movie?</h4>
                 <form role="form" method="get" action="choices.html">
-
                     <div class="form-group img-responsive text-center">
-                        <input class="form-control" id="name-input" type="text" pattern="\d*" placeholder="Enter Your Zip Code" required>
-                        <button class="btn btn-lg btn-primary" id="btnGoZipCode" type="submit">Find Dinner and a Movie</button>
+                        <input class="form-control" id="zipCode" type="text" pattern="\d*"
+                               placeholder="Enter Your Zip Code"
+                               required>
+                        <button class="btn  btn-primary " id="btnGoZipCode" type="submit">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                            Find Dinner and a Movie
+                        </button>
                     </div>
-
                     <br>
-
                 </form>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div id="login" class="col-md-12">
 
-        <div class="row">
-            <div id="login" class="col-md-12">
-                <h2>Want to have more control over searches?</h2>
-                <a id="signin" href='signin.html' class="btn btn-primary btn-lg" href="#" role="button">Sign In</a>
-                <a id="signout" class="btn btn-primary btn-lg" href="#" role="button">Sign Out</a>
-            </div>
-        </div>
+            <div class="mainContent">
+                <h4>Your search Results</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Restaurant</th>
+                            <th>Type</th>
+                            <th>Distance</th>
+                            <th>Price</th>
+                            <th>Movie</th>
+                            <th>Genre</th>
+                            <th>Distance</th>
+                        </tr>
+                        </thead>
+                        <tbody id="results">
 
-        <!--modal-->
-        <div id="myModal" class="modal fade" role="dialog" style="display: none;">
-            <div class="modal-dialog modal-lg">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-12 text-center">
-                                
-                            </div>
-                        </div>
-                    </div>
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>
-        <!--end modal-->
-        <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-                crossorigin="anonymous"></script>
-        <script src="assets/javascript/moment.js"></script>
-        <script src="assets/javascript/back_end_code.js"></script>
-        <script src="assets/javascript/front_end_code.js"></script>
-
-        <script>
-            //Initialize Firebase
-            var config = {
-                apiKey: "AIzaSyBby0z2SGf1_1jTbXXDrcT4LWz6JcVGJYw",
-                authDomain: "dinnerandamovie-87b5e.firebaseapp.com",
-                databaseURL: "https://dinnerandamovie-87b5e.firebaseio.com",
-                projectId: "dinnerandamovie-87b5e",
-                storageBucket: "dinnerandamovie-87b5e.appspot.com",
-                messagingSenderId: "275851238648"
-            };
-
-            firebase.initializeApp(config);
-
-            initApp = function () {
-
-                // Initialize Firebase
-
-                //firebase.initializeApp(config);
-
-                firebase.auth().onAuthStateChanged(function (user) {
-
-                    if (user) {
-                        // User is signed in.
-
-                        console.log('Signing in a user ' + moment(Date.now()).calendar());
-                        addEventLogEntry(sessionStorage.getItem('email'), 'User SignIn', 'Signing in a user ');
-                        var displayName = user.displayName;
-                        var email = user.email;
-                        var emailVerified = user.emailVerified;
-                        var photoURL = user.photoURL;
-                        var uid = user.uid;
-                        var phoneNumber = user.phoneNumber;
-                        var providerData = user.providerData;
+    </div>
+</div>
 
 
-                        user.getIdToken().then(function (accessToken) {
-                            console.log('Function get token');
-                            $("#welcomeMsg").text("Welcome " + displayName);
-                            sessionStorage.setItem('displayName', displayName)
-                            sessionStorage.setItem('email', email);
-                            sessionStorage.setItem('emailVerified', emailVerified);
-                            sessionStorage.setItem('photoURL', photoURL);
-                            sessionStorage.setItem('uid', uid);
-                            sessionStorage.setItem('phoneNumber', phoneNumber);
-                            sessionStorage.setItem('providerData', providerData);
-                        });
-                        $('#signin').hide();
-                        $('#signout').show();
-                    } else {
-                        // User is signed out.
-                        $("#welcomeMsg").text("");
-                        $('#signout').hide();
-                        $('#signin').show();
-                    }
-                }, function (error) {
-                    console.log(error);
-                });
-            };
+<!-- Modal -->
+<div id="addUserModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
-            window.addEventListener('load', function () {
-                initApp();
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><i class="fa fa-user" aria-hidden="true"></i> Add/Edit User</h4>
+            </div>
+            <div class="modal-body">
+                <form id="newUserForm" action="">
+                    <div class="form-group">
+                        <label for="userDisplayName">Full Name:</label>
+                        <input type="text" id="userDisplayName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email:</label>
+                        <input type="email" id="userEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userRole">User Role:</label>
+                        <select class="form-control" id="userRole">
+                            <option>Reporter</option>
+                            <option>User</option>
+                            <option>Admin</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-success" id="btnModAddUser">Add User</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
 
-                $("#btnModAddUser").click(function () {
+    </div>
+</div>
+<!--end modal-->
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script src="assets/javascript/moment.js"></script>
+<script src="assets/javascript/back_end_code.js"></script>
+<script src="assets/javascript/front_end_code.js"></script>
+<script src="assets/MDBFree/js/mdb.js"></script>
+<script>
+  //Initialize Firebase
+  var config = {
+    apiKey: 'AIzaSyBby0z2SGf1_1jTbXXDrcT4LWz6JcVGJYw',
+    authDomain: 'dinnerandamovie-87b5e.firebaseapp.com',
+    databaseURL: 'https://dinnerandamovie-87b5e.firebaseio.com',
+    projectId: 'dinnerandamovie-87b5e',
+    storageBucket: 'dinnerandamovie-87b5e.appspot.com',
+    messagingSenderId: '275851238648',
+  };
 
-                    console.log("---------Add User button clicked");
-                    var fullName = $("#userDisplayName").val().trim();
-                    var email = $("#userEmail").val().trim();
-                    var role = $("#userRole option:selected").text();
+  firebase.initializeApp(config);
 
-                    addNewUser(fullName, email, role);
-                });
-            });
+  initApp = function() {
 
-            /**
-             * This functionality plugs a new user into the data base.
-             *
-             */
-            function addNewUser(fullName, email, role, preferences) {
-                console.log("---------Add User function");
-                //Prepare the user object
-                var newUser = {
-                    userDisplayName: fullName,
-                    userEmail: email,
-                    userRole: role,
-                    userActive: true,
-                    entryDate: Date.now(),
-                    lastChangeDate: Date.now(),
-                    lastModifiedBy: sessionStorage.getItem('email'),
-                    preferences: {
-                        restaurantPrefs: {
-                            fastFood: false,
-                            casual: false,
-                            fineDining: false,
-                            cafe: false,
-                            foodTruck: false,
-                            buffet: false,
-                            indian: false,
-                            mexican: false
-                        },
-                        moviePrefs: {
-                            horror: false,
-                            comedy: false,
-                            animation: false,
-                            romance: false,
-                            action: false,
-                            documentary: false,
-                            foreign: false,
-                            family: false,
-                            ratings: {
-                                G: false,
-                                PG: false,
-                                PG13: false,
-                                R: false
-                            }
-                        },
-                        searchRadius: 10
-                    }
-                };
+    // Initialize Firebase
 
-                //Get a unique key
-                //Get a key for a new Post.
-                var newUserID = firebase.database().ref().child("users").push().key;
+    //firebase.initializeApp(config);
 
-                //Add the user
-                firebase.database().ref("users/" + newUserID).set(newUser);
+    firebase.auth().onAuthStateChanged(function(user) {
 
-            }
+      if (user) {
+        // User is signed in.
 
-            var $lat = $("#latitude");
-            var $long = $("#longitude");
+        console.log('Signing in a user ' + moment(Date.now()).calendar());
+        addEventLogEntry(sessionStorage.getItem('email'), 'User SignIn', 'Signing in a user ');
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var photoURL = user.photoURL;
+        var uid = user.uid;
+        var phoneNumber = user.phoneNumber;
+        var providerData = user.providerData;
 
-            /**
-             * This functionality returns the location of the user that has come to the website if they give you that permission
-             */
-            function getLocation() {
-                console.log('This is the get location function ')
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showPosition);
-                } else {
-                    $lat.text("Geolocation is not supported by this browser.");
-                }
-            }
+        user.getIdToken().then(function(accessToken) {
+          console.log('Function get token');
+          $('#welcomeMsg').text('Welcome ' + displayName);
+          sessionStorage.setItem('displayName', displayName);
+          sessionStorage.setItem('email', email);
+          sessionStorage.setItem('emailVerified', emailVerified);
+          sessionStorage.setItem('photoURL', photoURL);
+          sessionStorage.setItem('uid', uid);
+          sessionStorage.setItem('phoneNumber', phoneNumber);
+          sessionStorage.setItem('providerData', providerData);
+        });
+        $('#signIn').hide();
+        $('#signOut').show();
+        //$('.dropdown-menu').toggle();
+      } else {
+        // User is signed out.
+        $('#welcomeMsg').text('');
+        $('#signOut').hide();
+        $('#signIn').show();
+      }
+    }, function(error) {
+      console.log(error);
+    });
+  };
 
-            function showPosition(position) {
-                console.log('Current Position is ' + position.coords.latitude + ", " + position.coords.longitude)
-                $lat.text("Latitude: " + position.coords.latitude);
-                $long.text("Longitude: " + position.coords.longitude);
-                sessionStorage.setItem("currentLat", position.coords.latitude);
-                sessionStorage.setItem("currentLong", position.coords.longitude);
-            }
+  window.addEventListener('load', function() {
+    initApp();
 
-            getLocation();
-        </script>
-    </body>
+    $('#btnModAddUser').click(function() {
+
+      console.log('---------Add User button clicked');
+      var fullName = $('#userDisplayName').val().trim();
+      var email = $('#userEmail').val().trim();
+      var role = $('#userRole option:selected').text();
+
+      addNewUser(fullName, email, role);
+    });
+  });
+
+  /**
+   * This functionality plugs a new user into the data base.
+   *
+   */
+  function addNewUser(fullName, email, role, preferences) {
+    console.log('---------Add User function');
+    //Prepare the user object
+    var newUser = {
+      userDisplayName: fullName,
+      userEmail: email,
+      userRole: role,
+      userActive: true,
+      entryDate: Date.now(),
+      lastChangeDate: Date.now(),
+      lastModifiedBy: sessionStorage.getItem('email'),
+      preferences: {
+        restaurantPrefs: {
+          fastFood: false,
+          casual: false,
+          fineDining: false,
+          cafe: false,
+          foodTruck: false,
+          buffet: false,
+          indian: false,
+          mexican: false,
+        },
+        moviePrefs: {
+          horror: false,
+          comedy: false,
+          animation: false,
+          romance: false,
+          action: false,
+          documentary: false,
+          foreign: false,
+          family: false,
+          ratings: {
+            G: false,
+            PG: false,
+            PG13: false,
+            R: false,
+          },
+        },
+        searchRadius: 10,
+      },
+    };
+
+    //Get a unique key
+    //Get a key for a new Post.
+    var newUserID = firebase.database().ref().child('users').push().key;
+
+    //Add the user
+    firebase.database().ref('users/' + newUserID).set(newUser);
+
+  }
+
+  var $lat = $('#latitude');
+  var $long = $('#longitude');
+
+  /**
+   * This functionality returns the location of the user that has come to the website if they give you that permission
+   */
+  function getLocation() {
+    console.log('This is the get location function ');
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      $lat.text('Geolocation is not supported by this browser.');
+    }
+  }
+
+  function showPosition(position) {
+    console.log('Current Position is ' + position.coords.latitude + ', ' + position.coords.longitude);
+    $lat.text('Latitude: ' + position.coords.latitude);
+    $long.text('Longitude: ' + position.coords.longitude);
+    sessionStorage.setItem('currentLat', position.coords.latitude);
+    sessionStorage.setItem('currentLong', position.coords.longitude);
+  }
+
+  getLocation();
+</script>
+</body>
 </html>
