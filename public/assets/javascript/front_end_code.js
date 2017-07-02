@@ -1,18 +1,21 @@
 //gets today's date and puts in format needed for API
 var m = moment().get('date');
 var date = moment().format('YYYY-MM-DD');
-var zipCode = $('#name-input').val();
+var zipCode = $('#zipCode').val();
+var userPref = {};
+
 var rndMovies = [];
 
 $('#btnGoZipCode').on('click', function(event) {
   event.preventDefault();
-  $(location).attr('href', 'choices.html');
+  //populateSearchResults('zip');
 });
 
-$('#settingsSpan').click(function() {
+$('#btnGoLatLong').on('click', function(event) {
   event.preventDefault();
-
+  populateSearchResults('ll');
 });
+
 function buildChoices() {
   var movieList = getRecommendations();
   console.log(movieList);
@@ -76,4 +79,95 @@ function buildChoices() {
 
     choiceDiv.append(strChoices);
   }
+}
+
+function populateSearchResults(searchMode) {
+  $.when(
+      getRecommendations(userPref, userLat, userLon, zipCode, searchMode)
+  ).done(function() {
+    //console.log(recommendations.length);
+    $('#results').empty();
+    for (var i = 0; i < recommendations.length; i++) {
+      addRecommendationsRow(recommendations[i], i);
+    }
+
+  });
+
+}
+
+function shiftResults() {
+
+}
+
+/**
+ * This function takes an individual recommendation item and adds it to a table row object
+ * @param {object} Rec This object is the recommendations object
+ * @param {integer} index This is the index of the array that is being used
+ */
+function addRecommendationsRow(rec, index) {
+
+  var $newRow = $('<tr>');
+  var $newCol1 = $('<td>');
+  var $newCol2 = $('<td>');
+  var $newCol3 = $('<td>');
+  var $newCol4 = $('<td>');
+  var $newCol5 = $('<td>');
+  var $newCol6 = $('<td>');
+  var $newCol7 = $('<td>');
+  var $newCol8 = $('<td>');
+  var $newRowLink = $('<a>');
+
+  //Column layout tied to the Recommendations table
+  $newCol1.text('');
+  $newCol2.text(rec.restaurant.restaurantName);
+  $newCol3.text(rec.restaurant.category);
+  $newCol4.text(rec.restaurant.rating);
+  $newCol5.text(rec.restaurant.price);
+  $newCol6.text(rec.movie.movieName);
+  $newCol7.text(rec.movie.showtime.theatre.name);
+  $newCol8.text(rec.movie.movieGenre.toString());
+
+  //Add row attributes to the link
+  $newRow.attr('data-toggle', 'modal');
+  $newRow.attr('data-target', 'showRecommendationsModal');
+  $newRow.append($newCol1);
+  $newRow.append($newCol2);
+  $newRow.append($newCol3);
+  $newRow.append($newCol4);
+  $newRow.append($newCol5);
+  $newRow.append($newCol6);
+  $newRow.append($newCol7);
+  $newRow.append($newCol8);
+  $newRow.attr('id', index);
+  $newRow.on('click', function(event) {
+    var rec = recommendations[$(this).attr('id')];
+
+    $('#restRecTitle').
+        text(rec.restaurant.restaurantName);
+    console.log('This is the image ' + rec.restaurant.imgURL);
+    $('#restRecImage').
+        attr('src', rec.restaurant.imgURL);
+    $('#restRating').
+        text(rec.restaurant.rating);
+    $('#restCategory').
+        text(rec.restaurant.category);
+    $('#restCity').
+        text(rec.restaurant.location.city);
+    $('#movieCardTheater').
+        text(rec.movie.showtime.theatre.name);
+    $('#movieCardGenre').
+        text(rec.movie.movieGenre.splice(', '));
+    $('#movieCardDesc').
+        text(rec.movie.movieDesc);
+    $('#movieCardRating').
+        text(rec.movie.movieRating);
+    $('#movieCardTitle').
+        text(rec.movie.movieName);
+
+    console.log($(this).attr('id'));
+    $('#showRecommendationsModal').modal();
+  });
+
+  $('#results').append($newRow);
+  $('#resultsPanel').show();
 }

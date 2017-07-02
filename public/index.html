@@ -33,20 +33,25 @@
     </div>
 
 </div>
-
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="mainContent text-center">
-                <h4>How about Dinner and a Movie?</h4>
-                <form role="form" method="get" action="choices.html">
+                <div class="heading"><h4>How about Dinner and a Movie?</h4></div>
+
+                <form role="form">
                     <div class="form-group img-responsive text-center">
                         <input class="form-control" id="zipCode" type="text" pattern="\d*"
                                placeholder="Enter Your Zip Code"
                                required>
                         <button class="btn  btn-primary " id="btnGoZipCode" type="submit">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                            Find Dinner and a Movie
+                            <i class="fa fa-map-pin" aria-hidden="true"></i>
+                            Zip Code Search
+                        </button>
+                        <span id="locationMessage"><i class="fa fa-cog fa-spin fa-2x fa-fw"></i>Getting Current Location</span>
+                        <button hidden="true" class="btn  btn-primary " id="btnGoLatLong" type="submit">
+                            <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                            Use Current Location
                         </button>
                     </div>
                     <br>
@@ -55,22 +60,21 @@
         </div>
     </div>
     <div class="row">
-        <div id="login" class="col-md-12">
-
-            <div class="mainContent">
-                <h4>Your search Results</h4>
-                <div class="table-responsive">
+        <div class="col-md-12">
+            <div hidden="true" id="resultsPanel" class="mainContent">
+                <div class="heading"><h4>Your Search Results</h4></div>
+                <div class="table-responsive" id="#tableContainer">
                     <table class="table table-hover">
                         <thead>
                         <tr>
                             <th></th>
                             <th>Restaurant</th>
                             <th>Type</th>
-                            <th>Distance</th>
+                            <th>Rating</th>
                             <th>Price</th>
                             <th>Movie</th>
+                            <th>Theater</th>
                             <th>Genre</th>
-                            <th>Distance</th>
                         </tr>
                         </thead>
                         <tbody id="results">
@@ -83,7 +87,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Modal -->
 <div id="addUserModal" class="modal fade" role="dialog">
@@ -124,6 +127,60 @@
     </div>
 </div>
 <!--end modal-->
+
+<!-- Modal -->
+<div id="showRecommendationsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><i class="fa fa-user" aria-hidden="true"></i>Show Recommendation</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="media">
+                            <div class="media-left">
+                                <img src="img_avatar1.png" id="restRecImage" class="media-object" style="width:60px">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading" id="restRecTitle">John Doe</h4>
+                                <span class="fieldLabel">Location:</span>
+                                <span id="restCity"></span><br/>
+                                <span class="fieldLabel">Type:</span>
+                                <span id="restCategory"></span><br/>
+                                <span class="fieldLabel">Rating:</span>
+                                <span id="restRating"></span>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <img src="img_avatar1.png" class="media-object" style="width:60px">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading" id="movieCardTitle">John Doe</h4>
+                                <span class="fieldLabel">Theater:</span>
+                                <span id="movieCardTheater"></span><br/>
+                                <span class="fieldLabel">Genre:</span>
+                                <span id="movieCardGenre"></span><br/>
+                                <span class="fieldLabel">Plot:</span>
+                                <span id="movieCardDesc"></span>r
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
 <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -135,6 +192,11 @@
 <script src="assets/javascript/front_end_code.js"></script>
 <script src="assets/MDBFree/js/mdb.js"></script>
 <script>
+
+  //Globals
+  var userLat = '';
+  var userLon = '';
+
   //Initialize Firebase
   var config = {
     apiKey: 'AIzaSyBby0z2SGf1_1jTbXXDrcT4LWz6JcVGJYw',
@@ -283,6 +345,11 @@
     $long.text('Longitude: ' + position.coords.longitude);
     sessionStorage.setItem('currentLat', position.coords.latitude);
     sessionStorage.setItem('currentLong', position.coords.longitude);
+    userLat = position.coords.latitude;
+    userLon = position.coords.longitude;
+
+    $('#locationMessage').hide();
+    $('#btnGoLatLong').show();
   }
 
   getLocation();
