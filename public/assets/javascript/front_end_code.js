@@ -19,7 +19,7 @@ $('#btnGoLatLong').on('click', function(event) {
 function buildChoices() {
   var movieList = getRecommendations();
   console.log(movieList);
-  var choiceDiv = $('#choiceContiner');
+  var choiceDiv = $('#choiceContiner');   // main choices
 
   for (var i = 1; i <= 3; i++) {
     var movieName = movieList[i - 1].movie.movieName;
