@@ -1,187 +1,250 @@
-html {}
+html {
+}
 
 body {
-	background:#000;
+    background: #000;
+    background: url(../images/couplemovie.jpg) no-repeat;
+    background-size: cover;
 }
 
 .container {
-	color: #fff;
-	background-color: #000;
+    color: #fff;
 }
 
+#tableContainer {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.fieldLabel {
+    font-weight: bold;
+}
+
+#signInMessage {
+    background: rgba(136, 136, 136, .75);
+    margin-bottom: 15px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 15px;
+    border-radius: 9px;
+    text-align: center;
+    color: floralwhite;
+    font-size: larger;
+    font-weight: bold;
+}
+
+table {
+    background-color: papayawhip;
+    color: darkslategray;
+    border-radius: 5px;
+}
+
+#showRecommendationsModal .modal {
+    width: 50%;
+}
 
 #searchRadius {
-	color: black;
+    color: black;
 }
 
+#zipCode {
+    color: white;
+}
+
+i {
+    margin-right: 10px;
+}
+
+.heading {
+    text-align: center;
+}
+
+.topBar {
+    width: 100%;
+    background-color: transparent;
+    margin-bottom: 45px;
+}
+
+.mainContent {
+    background: rgba(136, 136, 136, .75);
+    color: floralwhite;
+    margin-bottom: 15px;
+    text-align: left;
+    padding: 15px;
+    border-radius: 9px;
+}
+
+#settingsSpan {
+    color: white;
+    float: right;
+    position: absolute;
+    top: 10px;
+    right: 15px
+}
 
 .battleArea {
-	background: url(../images/couplemovie.jpg) no-repeat center;
-	margin: auto;
-	color: white;
-	width: 100%;
-	padding: 320px 20px 20px 20px;
-	height: 500px;
-	margin-bottom: 20px;
+
+    margin: auto;
+    color: white;
+    width: 100%;
+    padding: 320px 20px 20px 20px;
+    height: 500px;
+    margin-bottom: 20px;
 }
 
-
 .goArea {
-	margin-top: 0px;
-	text-align: center;
-	width: 100%;
-	height: 600px;
-	color: white;
+    margin-top: 0px;
+    text-align: center;
+    width: 100%;
+    height: 600px;
+    color: white;
 }
 
 #movieChosen {
 
-	margin: 20px;	
-	height: 450px;
-	width: 350px;
-	border: 2px solid purple;
+    margin: 20px;
+    height: 450px;
+    width: 350px;
+    border: 2px solid purple;
 }
 
 #dinnerChosen {
-	margin: 20px;
-	height: 450px;
-	width: 350px;
-	border: 2px solid purple;
+    margin: 20px;
+    height: 450px;
+    width: 350px;
+    border: 2px solid purple;
 }
 
-
 .summary {
-	text-align: center;
-	color: white;
+    text-align: center;
+    color: white;
 }
 
 .form-control {
-	text-align: center;
-	width: 200px;
-	margin: auto;
+    text-align: center;
+    width: 200px;
+    margin: auto;
 
 }
 
 #login {
-	text-align: center;
-	margin: auto;
+    text-align: center;
+    margin: auto;
 }
 
 #name-input {
-	text-align: center;
+    text-align: center;
 }
-
 
 h2 {
-	text-align: center;
-	color: white;
+    text-align: center;
+    color: white;
 }
-
 
 #settings-button {
-	height: 35px;
-	width: 35px;
-	background: black;
+    height: 35px;
+    width: 35px;
+    background: black;
 }
-
 
 /*style nav brand color and font*/
 .navbar-brand {
-	font-family: georgia;
-	font-size: 32px;
+    font-family: georgia;
+    font-size: 32px;
 }
 
 .container-fluid {
     background: #232426;
 }
 
-
 /* screen responsiveness*/
-@media screen and (max-width: 882px){
-	.battleArea {
-		width: 500px;
-	}
+@media screen and (max-width: 882px) {
+    .battleArea {
+        width: 500px;
+    }
 
-	#movieChosen {
-		width: 300px;
-		height: 400px;
-	}
+    #movieChosen {
+        width: 300px;
+        height: 400px;
+    }
 
-	#dinnerChosen {
-		width: 300px;
-		height: 400px;
+    #dinnerChosen {
+        width: 300px;
+        height: 400px;
 
-	}
+    }
 
-	.navbar-toggle {
-		display: block;
-	}
+    .navbar-toggle {
+        display: block;
+    }
 
-	.navbar-collapse {
-		border-top: 1px solid transparent;
-		box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-	}
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
 
-	.navbar-collapse.collapse {
-		display: none!important;
-	}
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
 
-	.navbar-nav {
-		float: none!important;
-		margin: 7.5px -15px;
-		overflow: hidden;
-	}
+    .navbar-nav {
+        float: none !important;
+        margin: 7.5px -15px;
+        overflow: hidden;
+    }
 
-	.navbar-nav li {
-		float: none;
-		text-align: center;
-	}
+    .navbar-nav li {
+        float: none;
+        text-align: center;
+    }
 
-	.navbar-nav>li>a {
-		padding-top: 10px;
-		padding-bottom: 10px;
-	}
+    .navbar-nav > li > a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
 
-	.navbar-text {
-		float: none;
-		margin: 15px 0;
-	}
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
 
-	.navbar-collapse.collapse.in { 
-		display: block!important;
-	}
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
 
-	.collapsing {
-		overflow: hidden!important;
-	}
-
-}
-
-@media screen and (max-width: 640px){
-	.battleArea {
-		width: 100%;
-	}
-
-	.navbar-brand {
-		font-size: 15px;
-	}
-
-	#movieChosen {
-		width: 170px;
-		height: 240px;
-	}
-
-	#dinnerChosen {
-		width: 170px;
-		height: 240px;
-	}
+    .collapsing {
+        overflow: hidden !important;
+    }
 
 }
 
-well-lg h3{color:#232426;}
+@media screen and (max-width: 640px) {
+    .battleArea {
+        width: 100%;
+    }
 
-#choiceContiner.container{
-	color:#000;
+    .navbar-brand {
+        font-size: 15px;
+    }
+
+    #movieChosen {
+        width: 170px;
+        height: 240px;
+    }
+
+    #dinnerChosen {
+        width: 170px;
+        height: 240px;
+    }
+
+}
+
+well-lg h3 {
+    color: #232426;
+}
+
+#choiceContiner.container {
+    color: #000;
 }
 
 #welcomeMsg{

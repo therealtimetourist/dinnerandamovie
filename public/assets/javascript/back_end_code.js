@@ -5,26 +5,8 @@ var theaters = [];
 var recommendations = [];
 var recommendation = {};
 
-
 $(document).ready(function() {
 
-
-  // Initialize Firebase
-
-  var config = {
-    apiKey: 'AIzaSyDwvX6WztC5DIZ3fZaWG7O8z86qBrIndyk',
-    authDomain: 'te2timekeeper.firebaseapp.com',
-    databaseURL: 'https://te2timekeeper.firebaseio.com',
-    projectId: 'te2timekeeper',
-    storageBucket: 'te2timekeeper.appspot.com',
-    messagingSenderId: '679714174028',
-  };
-
-  //firebase.initializeApp(config);
-
-  // Get a reference to the database service
-
-  // Get a reference to the database service
   var users = firebase.database().ref('users/');
 
   users.orderByChild('userDisplayName').on('value', function(snapshot) {
@@ -91,13 +73,14 @@ $(document).ready(function() {
       $('#adminMenu').hide();
     }
   }
+
   //Check to see if the logged on user is an admin before displaying the Admin Menu
 
   function getAppUserProfile() {
     //Get the app profile from the user that just logged in.
   }
 
-  $('#signout').click(function() {
+  $('#signOut').click(function() {
     console.log('Signing out');
     firebase.auth().signOut().then(function() {
       $('#user-name').
@@ -107,6 +90,11 @@ $(document).ready(function() {
     }, function(error) {
       console.error('Sign Out Error', error);
     });
+  });
+
+  $('#signIn').click(function() {
+    console.log('Signing In');
+    window.location.assign('signin.html');
   });
 
   $('#btnRefreshRestaurants').click(function() {
@@ -126,12 +114,14 @@ $(document).ready(function() {
  * @param queryTerms
  * @returns {Array}
  */
-function get4SquareVenues(queryTerms) {
+function get4SquareVenues(queryTerms, searchMode) {
   //Connect to FourSquare and run the search based on the paramenters set.
   var url = '';
   var ll = sessionStorage.getItem('currentLat') + '%2C%20' +
       sessionStorage.getItem('currentLong');
+  var zip = $('#zipCode').val().trim();
   var limit = 10;
+
   url = 'https://api.foursquare.com/v2/venues/explore?v=20131016';
   url += '&client_id=' + 'XUYA5NQ3ME2D0SSMNKUA5ALL4I0DBWG13M42U1PQII5PBWDH';
   url += '&client_secret=' +
@@ -226,10 +216,13 @@ function addRestaurantRow(venue) {
       state: 'FL',
       zip: '',
       distance: '',
+      lat: '',
+      lng: '',
     },
     category: '',
     price: '',
     rating: '',
+    imgURL: '',
   };
 
   var $newRow = $('<tr>');
@@ -255,9 +248,24 @@ function addRestaurantRow(venue) {
   place.location.distance = venue.location.distance;
   $newCol6.text(venue.rating);  //rating
   place.rating = venue.rating;
+  place.location.lat = venue.location.lat;
+  place.location.lng = venue.location.lng;
+  place.imgURL =
+      venue.featuredPhotos.items[0].prefix +
+      'width' + venue.featuredPhotos.items[0].width +
+      venue.featuredPhotos.items[0].suffix;
 
-  $newCol7.text(venue.price.tier);  //price
-  place.price = venue.price.tier;
+  if (venue.price.tier) {
+    var dollars = '';
+    for (var i = 0; i < venue.price.tier; i++) {
+      dollars += '$';
+    }
+    $newCol7.text(dollars);  //price
+    place.price = dollars;
+  } else {
+    $newCol7.text('0');  //price
+    place.price = '0';
+  }
 
   $newRow.append($newCol1);
   $newRow.append($newCol2);
@@ -316,8 +324,7 @@ function addEventLogEntry(userEmail, eventType, eventText) {
  * @param {string} zipCode Zip code passed from user input
  */
 
-
-function pullMovies() {
+function pullMovies(searchMode) {
   var m = moment().get('date');
   var date = moment().format('YYYY-MM-DD');
 
@@ -326,7 +333,7 @@ function pullMovies() {
 
 //need to pass input zip code to this var
   //var zipCode = '';
-  var queryURL = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=' +
+  var queryURL = 'https://data.tmsapi.com/v1.1/movies/showings?startDate=' +
       date + '&lat=' + currentLat + '&lng=' + currentLong +
       '&radius=10&api_key=52hkegdyrb7rrj8eraadpwg4';
 
@@ -348,8 +355,9 @@ function pullMovies() {
           distance: '',
         },
         movieName: response[i].title,
-        movieDesc: response[i].longDescription,
+        movieDesc: response[i].shortDescription,
         movieGenre: response[i].genres,
+        movieRating: response[i].ratings[0].code,
       };
 
       movies.push(movie);
@@ -364,15 +372,15 @@ function pullMovies() {
  * @param {object} userPref
  * @return {array} recommendations
  */
-function getRecommendations(userPref) {
+function getRecommendations(userPref, userLat, userlong, zipCode, searchMode) {
   recommendations = [];
-  $.when(
-      get4SquareVenues('movie%20theater'),
-      get4SquareVenues('restaurants'),
-      pullMovies()
+  return $.when(
+      get4SquareVenues('movie%20theater', searchMode),
+      get4SquareVenues('restaurants', searchMode),
+      pullMovies(searchMode)
   ).done(function() {
-    for (var i = 0; i < 3; i++) {
-      var newRec = recommendation;
+    for (var i = 0; i < 10; i++) {
+      var newRec = {};
       newRec.movie = movies[i];
       newRec.restaurant = restaurants[i];
       recommendations.push(newRec);
@@ -380,7 +388,7 @@ function getRecommendations(userPref) {
 
     console.log('-----------This is the RECOMMENDATION OBJECT---------------');
     console.log(recommendations);
-    return recommendations;
+
   });
 
 }
