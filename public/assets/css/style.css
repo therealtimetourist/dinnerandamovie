@@ -134,7 +134,6 @@ i {
 
 #name-input {
     text-align: center;
-
 }
 
 h2 {
@@ -150,7 +149,6 @@ h2 {
 
 /*style nav brand color and font*/
 .navbar-brand {
-
     font-family: georgia;
     font-size: 32px;
 }
@@ -247,5 +245,9 @@ well-lg h3 {
 
 #choiceContiner.container {
     color: #000;
+}
+
+#welcomeMsg{
+	color:#fff;
 }
 
