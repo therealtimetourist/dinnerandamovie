@@ -344,6 +344,11 @@ function pullMovies(searchMode) {
     console.log(response);
     //console.log(response[i].showtimes[0].theater.name + " "  + response[0].title + '  ' + response[0].longDescription + '  ' + response[0].genres);
     for (var i = 0; i < response.length; i++) {
+      var rating = '';
+
+      if (response[i].ratings !== undefined) {
+        rating = response[i].ratings[0].code;
+      }
 
       var movie = {
         showtime: response[i].showtimes[0],
@@ -357,7 +362,7 @@ function pullMovies(searchMode) {
         movieName: response[i].title,
         movieDesc: response[i].shortDescription,
         movieGenre: response[i].genres,
-        movieRating: response[i].ratings[0].code,
+        movieRating: rating,
       };
 
       movies.push(movie);
