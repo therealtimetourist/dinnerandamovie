@@ -9,6 +9,7 @@ var rndMovies = [];
 $('#btnGoZipCode').on('click', function(event) {
   event.preventDefault();
   //populateSearchResults('zip');
+  populateSearchResults('ll');
 });
 
 $('#btnGoLatLong').on('click', function(event) {
