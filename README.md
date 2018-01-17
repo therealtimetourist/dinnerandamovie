@@ -13,3 +13,4 @@ Once the user logs in, his or her preferences are stored and used in subsequent 
 
 App Link: https://dinnerandamovie-87b5e.firebaseapp.com/
 
+![screen shot 2018-01-16 at 10 45 53 pm](https://user-images.githubusercontent.com/25890329/35024861-dad77926-fb0f-11e7-8874-eac718890a4e.png)
